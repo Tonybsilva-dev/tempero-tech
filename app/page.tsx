@@ -1,5 +1,4 @@
 import CategoryList from "./_components/category-list";
-import Search from "./_components/search";
 import ProductList from "./_components/product-list";
 import { Button } from "./_components/ui/button";
 import { ChevronRightIcon } from "lucide-react";
@@ -28,25 +27,22 @@ const Home = async () => {
   return (
     <>
       <div className="md:p-8">
-        <div className="px-5 pt-6">
-          <Search />
-        </div>
-
-        <div className="px-5 pt-6 space-y-4">
+        <div className="space-y-4 px-5 pt-12">
           <h2 className="text-2xl font-semibold">Categorias</h2>
           <CategoryList />
         </div>
+        <div className=" lg:w-lg mx-auto max-w-4xl">
+          <div className="flex flex-col items-center justify-center space-x-0 space-y-4 px-5 pt-6 md:flex-row md:space-x-4 md:space-y-0">
+            <PromoBanner
+              src="/promo-banner-01.png"
+              alt="Até 30% de desconto em pizzas!"
+            />
 
-        <div className="flex flex-col items-center justify-center space-y-4 px-5 pt-6 md:flex-row md:space-x-4 md:space-y-0">
-          <PromoBanner
-            src="/promo-banner-01.png"
-            alt="Até 30% de desconto em pizzas!"
-          />
-
-          <PromoBanner
-            src="/promo-banner-02.png"
-            alt="A partir de R$17,90 em lanches"
-          />
+            <PromoBanner
+              src="/promo-banner-02.png"
+              alt="A partir de R$17,90 em lanches"
+            />
+          </div>
         </div>
 
         <div className="space-y-4 pt-6">

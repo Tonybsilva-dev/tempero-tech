@@ -5,6 +5,7 @@ import { formatCurrency } from "../_helpers/price";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import { CartContext } from "../_contexts/cart";
+import { ShoppingCart } from "lucide-react";
 
 const Cart = () => {
   const { products, subtotalPrice, totalPrice, totalDiscounts } =
@@ -62,7 +63,10 @@ const Cart = () => {
           <Button className="mt-6 w-full">Finalizar pedido</Button>
         </>
       ) : (
-        <h2 className="text-left font-medium">Sua sacola está vazia.</h2>
+        <div className="flex h-full w-full flex-col items-center justify-center space-y-4">
+          <ShoppingCart className="h-6 w-6" />
+          <h2 className="text-left font-medium">Sua sacola está vazia.</h2>
+        </div>
       )}
     </div>
   );

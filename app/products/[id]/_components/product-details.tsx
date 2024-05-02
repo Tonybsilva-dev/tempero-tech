@@ -15,6 +15,7 @@ import {
   AlertDialogTitle,
 } from "@/app/_components/ui/alert-dialog";
 import { Button } from "@/app/_components/ui/button";
+import { Separator } from "@/app/_components/ui/separator";
 import {
   Sheet,
   SheetContent,
@@ -98,7 +99,7 @@ const ProductDetails = ({
               className="rounded-full object-cover"
             />
           </div>
-          <span className="text-xs text-muted-foreground">
+          <span className="text-xs text-muted-foreground lg:text-2xl">
             {product.restaurant.name}
           </span>
         </div>
@@ -170,8 +171,9 @@ const ProductDetails = ({
 
       <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
         <SheetContent className="w-[90vw]">
-          <SheetHeader>
-            <SheetTitle className="text-left">Sacola</SheetTitle>
+          <SheetHeader className="space-y-4">
+            <SheetTitle className="text-left text-xl">Sacola</SheetTitle>
+            <Separator />
           </SheetHeader>
 
           <Cart />
@@ -182,12 +184,11 @@ const ProductDetails = ({
         open={isConfirmationDialogOpen}
         onOpenChange={setIsConfirmationDialogOpen}
       >
-        <AlertDialogContent>
+        <AlertDialogContent className="space-y-4">
           <AlertDialogHeader>
-            <AlertDialogTitle>
-              Você só pode adicionar itens de um restaurante por vez
-            </AlertDialogTitle>
-            <AlertDialogDescription>
+            <AlertDialogTitle className="text-center">Um momento!</AlertDialogTitle>
+            <AlertDialogDescription className="text-center">
+              Você só pode adicionar itens de um restaurante por vez! <br />
               Deseja mesmo adicionar esse produto? Isso limpará sua sacola
               atual.
             </AlertDialogDescription>

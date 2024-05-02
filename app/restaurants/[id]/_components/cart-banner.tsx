@@ -2,6 +2,7 @@
 
 import Cart from "@/app/_components/cart";
 import { Button } from "@/app/_components/ui/button";
+import { Separator } from "@/app/_components/ui/separator";
 import {
   Sheet,
   SheetContent,
@@ -52,8 +53,9 @@ const CartBanner = ({ restaurant }: CartBannerProps) => {
             <Button>Ver sacola</Button>
           </SheetTrigger>
           <SheetContent className="w-[90vw]">
-            <SheetHeader>
-              <SheetTitle className="text-left">Sacola</SheetTitle>
+            <SheetHeader className="space-y-4">
+              <SheetTitle className="text-left text-xl">Sacola</SheetTitle>
+              <Separator />
             </SheetHeader>
 
             <Cart />

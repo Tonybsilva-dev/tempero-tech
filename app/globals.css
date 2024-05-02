@@ -58,5 +58,6 @@
 
   body {
     @apply text-foreground antialiased;
+    font-family: Helvetica, sans-serif;
   }
 }

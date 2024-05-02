@@ -2,7 +2,7 @@
 "use client";
 
 import { Prisma, Product } from "@prisma/client";
-import { ReactNode, createContext, useMemo, useState } from "react";
+import { ReactNode, createContext, useEffect, useMemo, useState } from "react";
 import { calculateProductTotalPrice } from "../_helpers/price";
 
 export interface CartProduct
@@ -60,6 +60,17 @@ export const CartContext = createContext<ICartContext>({
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [products, setProducts] = useState<CartProduct[]>([]);
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem("@tempero-tech:cart");
+    if (storedCart) {
+      setProducts(JSON.parse(storedCart));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("@tempero-tech:cart", JSON.stringify(products));
+  }, [products]);
 
   const subtotalPrice = useMemo(() => {
     return products.reduce((acc, product) => {
