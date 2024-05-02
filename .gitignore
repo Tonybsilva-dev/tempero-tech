@@ -38,3 +38,5 @@ next-env.d.ts
 
 # docker
 .postgres-data
+# Sentry Config File
+.sentryclirc
