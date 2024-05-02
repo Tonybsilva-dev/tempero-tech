@@ -2,7 +2,7 @@
 
 import { Restaurant } from "@prisma/client";
 import { notFound, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { searchForRestaurants } from "./_actions/search";
 import RestaurantItem from "../_components/restaurant-item";
 
@@ -31,13 +31,15 @@ const Restaurants = () => {
       <div className="px-5 py-6">
         <h2 className="mb-6 text-lg font-semibold">Restaurantes Encontrados</h2>
         <div className="grid grid-cols-2 justify-items-center gap-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8">
-          {restaurants.map((restaurant) => (
-            <RestaurantItem
-              key={restaurant.id}
-              restaurant={restaurant}
-              className="min-w-full max-w-full"
-            />
-          ))}
+          <Suspense>
+            {restaurants.map((restaurant) => (
+              <RestaurantItem
+                key={restaurant.id}
+                restaurant={restaurant}
+                className="min-w-full max-w-full"
+              />
+            ))}
+          </Suspense>
         </div>
       </div>
     </>
