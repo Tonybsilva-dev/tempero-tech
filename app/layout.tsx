@@ -25,7 +25,7 @@ export default function RootLayout({
         <CartProvider>
           <div className="space-y-8">
             <Header />
-            <div className="pt-8">{children}</div>
+            <div className="pt-6">{children}</div>
           </div>
         </CartProvider>
       </body>

@@ -29,7 +29,7 @@ export default function Loading() {
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="h-14 w-14">
             <svg
-              className="h-full w-full animate-spin text-orange-500"
+              className="h-full w-full animate-spin text-yellow-600"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"

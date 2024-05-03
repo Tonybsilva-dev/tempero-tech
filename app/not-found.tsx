@@ -8,7 +8,7 @@ import { Button } from "./_components/ui/button";
 
 export default function Component() {
   return (
-    <main className="flex h-[100dvh] flex-col items-center justify-center px-4 md:px-6">
+    <main className="flex h-[80dvh] flex-col items-center justify-center px-4 md:px-6">
       <div className="max-w-md space-y-4 text-center">
         <h1 className="text-6xl font-bold tracking-tighter sm:text-7xl md:text-8xl">
           Vixe!
