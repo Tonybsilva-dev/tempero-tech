@@ -37,19 +37,17 @@ const LocationButton: React.FC = () => {
     }
   };
 
-  return (
-    <>
-      {isLoading ? (
-        <Button variant={"ghost"} size={"icon"}>
-          <Spinner />{" "}
-        </Button>
-      ) : (
-        <Button variant={"ghost"} size={"icon"} onClick={getLocation}>
-          <MapPin className="h-6 w-6" />
-        </Button>
-      )}
-    </>
+  const Element = isLoading ? (
+    <Button variant={"ghost"} size={"icon"}>
+      <Spinner />{" "}
+    </Button>
+  ) : (
+    <Button variant={"ghost"} size={"icon"} onClick={getLocation}>
+      <MapPin className="h-6 w-6" />
+    </Button>
   );
+
+  return Element;
 };
 
 export default LocationButton;
