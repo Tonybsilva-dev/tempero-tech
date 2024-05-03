@@ -5,6 +5,7 @@ import { Sheet, SheetTrigger, SheetContent } from "./ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Separator } from "./ui/separator";
 import Link from "next/link";
+import { signIn, signOut } from "next-auth/react";
 
 const MobileMenu = ({ data }: any) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,7 +50,7 @@ const MobileMenu = ({ data }: any) => {
             <>
               <div className="flex items-center justify-between pt-10">
                 <h2 className="font-semibold">Olá. Faça seu login!</h2>
-                <Button size="icon">
+                <Button size="icon" onClick={() => signIn()}>
                   <LogIn />
                 </Button>
               </div>
@@ -101,6 +102,7 @@ const MobileMenu = ({ data }: any) => {
             <Button
               variant="ghost"
               className="w-full justify-start space-x-3 rounded-md hover:bg-zinc-100 text-sm font-normal"
+              onClick={() => signOut()}
             >
               <LogOut size={16} />
               <span className="block">Sair da conta</span>
