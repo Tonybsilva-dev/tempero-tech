@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "./_components/header";
 import { CartProvider } from "./_contexts/cart";
+import AuthProvider from "./_providers/auth";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -22,12 +23,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <CartProvider>
-          <div className="space-y-8">
-            <Header />
-            <div className="pt-6">{children}</div>
-          </div>
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <div className="space-y-8">
+              <Header />
+              <div className="pt-6">{children}</div>
+            </div>
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );
