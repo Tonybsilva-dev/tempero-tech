@@ -27,7 +27,7 @@ const Home = async () => {
 
   return (
     <>
-      <div className="space-y-4 px-5 pt-8">
+      <div className="space-y-4 pt-8">
         <CategoryList />
       </div>
       {/* <div className=" lg:w-lg mx-auto max-w-4xl">
@@ -48,7 +48,7 @@ const Home = async () => {
         className="bg-transparent px-6 py-16 md:px-8 lg:px-10"
         id="products"
       >
-        <div className="container mx-auto">
+        <div className="mx-auto lg:container">
           <h2 className="mb-8 flex justify-between text-3xl font-bold">
             Ofertas do dia
             <Button
@@ -64,7 +64,7 @@ const Home = async () => {
       </section>
 
       <section className="mt-8 bg-gray-100 px-6 py-16 md:px-8 lg:px-10">
-        <div className="container mx-auto grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div className="mx-auto grid grid-cols-1 gap-8 lg:container md:grid-cols-2">
           <div className="flex flex-col justify-center">
             <h1 className="mb-4 text-4xl font-bold">
               Descubra os melhores estabelecimentos na cidade{" "}
@@ -99,7 +99,7 @@ const Home = async () => {
         className="bg-transparent px-6 py-16 md:px-8 lg:px-10"
         id="restaurants"
       >
-        <div className="container mx-auto">
+        <div className="mx-auto lg:container">
           <h2 className="mb-8 flex justify-between text-3xl font-bold">
             Restaurantes recomendados
             <Button

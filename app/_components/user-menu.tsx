@@ -18,11 +18,9 @@ const UserMenu = ({ status, data }: any) => {
         <Button size="icon" variant="ghost">
           <Avatar>
             <AvatarImage
-              src={
-                (data?.user?.image as string | undefined) ?? "/placeholder.png"
-              }
-              width={32}
-              height={32}
+              src={data?.user?.image as string | undefined}
+              width={24}
+              height={24}
             />
             <AvatarFallback>
               {data?.user?.name?.split(" ")[0][0]}
