@@ -62,15 +62,15 @@ const MobileMenu = ({ data }: any) => {
           </div>
 
           <div className="space-y-2">
-            <Button
-              variant="ghost"
-              className="w-full justify-start space-x-3 rounded-md text-sm font-normal hover:bg-zinc-100"
-            >
-              <Link href={"/"}>
+            <Link href={"/"}>
+              <Button
+                variant="ghost"
+                className="w-full justify-start space-x-3 rounded-md text-sm font-normal hover:bg-zinc-100"
+              >
                 <Home size={16} />
                 <span className="block">Início</span>
-              </Link>
-            </Button>
+              </Button>
+            </Link>
 
             {data?.user && (
               <>
