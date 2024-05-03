@@ -64,17 +64,19 @@ const MobileMenu = ({ data }: any) => {
           <div className="space-y-2">
             <Button
               variant="ghost"
-              className="w-full justify-start space-x-3 rounded-md hover:bg-zinc-100 text-sm font-normal"
+              className="w-full justify-start space-x-3 rounded-md text-sm font-normal hover:bg-zinc-100"
             >
-              <Home size={16} />
-              <span className="block">Início</span>
+              <Link href={"/"}>
+                <Home size={16} />
+                <span className="block">Início</span>
+              </Link>
             </Button>
 
             {data?.user && (
               <>
                 <Button
                   variant="ghost"
-                  className="w-full justify-start space-x-3 rounded-md hover:bg-zinc-100 text-sm font-normal"
+                  className="w-full justify-start space-x-3 rounded-md text-sm font-normal hover:bg-zinc-100"
                   asChild
                 >
                   <Link href="/my-orders">
@@ -85,7 +87,7 @@ const MobileMenu = ({ data }: any) => {
 
                 <Button
                   variant="ghost"
-                  className="w-full justify-start space-x-3 rounded-md hover:bg-zinc-100 text-sm font-normal"
+                  className="w-full justify-start space-x-3 rounded-md text-sm font-normal hover:bg-zinc-100"
                 >
                   <Heart size={16} />
                   <span className="block">Restaurantes Favoritos</span>
@@ -101,7 +103,7 @@ const MobileMenu = ({ data }: any) => {
           {data?.user && (
             <Button
               variant="ghost"
-              className="w-full justify-start space-x-3 rounded-md hover:bg-zinc-100 text-sm font-normal"
+              className="w-full justify-start space-x-3 rounded-md text-sm font-normal hover:bg-zinc-100"
               onClick={() => signOut()}
             >
               <LogOut size={16} />
