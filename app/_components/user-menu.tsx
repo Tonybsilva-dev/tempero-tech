@@ -17,7 +17,7 @@ const UserMenu = ({ status, data }: any) => {
       <DropdownMenuTrigger asChild>
         <Button size="icon" variant="ghost">
           <Avatar>
-            <AvatarImage src={data?.user?.image as string | undefined} />
+            <AvatarImage src={data?.user?.image as string | undefined ?? '/placeholder.png'} />
             <AvatarFallback>
               {data?.user?.name?.split(" ")[0][0]}
               {data?.user?.name?.split(" ")[1][0]}
