@@ -24,7 +24,7 @@ export default function Loading() {
   }, [estimatedLoadingTime]);
 
   return (
-    <div className="fixed bottom-0 right-0 m-4">
+    <div className="flex h-screen w-screen items-center justify-center self-center">
       <div className="relative h-20 w-20">
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="h-14 w-14">

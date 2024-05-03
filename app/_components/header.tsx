@@ -51,7 +51,7 @@ export default function Header() {
             <span className="text-lg font-bold">Tempero Tech</span>
           </Link>
           <Search />
-          <div className="flex items-center gap-4">
+          <div className="flex items-center space-x-4">
             <Button
               className="relative"
               size={"icon"}
@@ -59,13 +59,13 @@ export default function Header() {
               onClick={() => setIsCartOpen(true)}
             >
               <ShoppingCart className="h-6 w-6" />
-              <span className="absolute -right-2 -top-2 rounded-full bg-primary px-2 text-xs text-white">
+              <span className="absolute -right-2 -top-2 rounded-full bg-yellow-500 px-2 text-xs text-white">
                 {cartItemCount}
               </span>
             </Button>
             <Button className="relative" size={"icon"} variant={"ghost"}>
               <Bell className="h-6 w-6" />
-              {/* <span className="absolute -right-2 -top-2 rounded-full bg-primary px-2 text-xs text-white">
+              {/* <span className="absolute -right-2 -top-2 rounded-full bg-yellow-500 px-2 text-xs text-white">
                 2
               </span> */}
             </Button>

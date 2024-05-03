@@ -23,8 +23,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <CartProvider>
-          <Header />
-          {children}
+          <div className="space-y-8">
+            <Header />
+
+            {children}
+          </div>
         </CartProvider>
       </body>
     </html>
