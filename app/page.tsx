@@ -27,8 +27,8 @@ const Home = async () => {
 
   return (
     <>
-      <div className="px-6 py-16 md:p-8 md:px-8 lg:px-10">
-        <div className="space-y-4 px-5 pt-12">
+      <div className="px-6 md:p-8 md:px-8 lg:px-10">
+        <div className="space-y-4 px-5 pt-8">
           <CategoryList />
         </div>
         {/* <div className=" lg:w-lg mx-auto max-w-4xl">
@@ -102,7 +102,7 @@ const Home = async () => {
         >
           <div className="container mx-auto">
             <h2 className="mb-8 flex justify-between text-3xl font-bold">
-              Os melhores restaurantes
+              Restaurantes recomendados
               <Button
                 variant="ghost"
                 className="h-fit p-0 text-primary hover:bg-transparent"
