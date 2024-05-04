@@ -74,7 +74,7 @@ export default function Header() {
             <SheetTitle className="text-left text-xl">Sacola</SheetTitle>
             <Separator />
           </SheetHeader>
-          <Cart />
+          <Cart setIsOpen={setIsCartOpen}/>
         </SheetContent>
       </Sheet>
     </>
