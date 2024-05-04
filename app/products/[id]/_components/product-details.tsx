@@ -15,7 +15,6 @@ import {
   AlertDialogTitle,
 } from "@/app/_components/ui/alert-dialog";
 import { Button } from "@/app/_components/ui/button";
-import { Separator } from "@/app/_components/ui/separator";
 import {
   Sheet,
   SheetContent,
@@ -57,7 +56,7 @@ const ProductDetails = ({
   const { addProductToCart, products } = useContext(CartContext);
 
   const addToCart = ({ emptyCart }: { emptyCart?: boolean }) => {
-    addProductToCart({ product, quantity, emptyCart });
+    addProductToCart({ product: { ...product, quantity }, emptyCart });
     setIsCartOpen(true);
   };
 
@@ -99,7 +98,7 @@ const ProductDetails = ({
               className="rounded-full object-cover"
             />
           </div>
-          <span className="text-xs text-muted-foreground lg:text-2xl">
+          <span className="text-xs text-muted-foreground">
             {product.restaurant.name}
           </span>
         </div>
@@ -171,12 +170,11 @@ const ProductDetails = ({
 
       <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
         <SheetContent className="w-[90vw]">
-          <SheetHeader className="space-y-4">
-            <SheetTitle className="text-left text-xl">Sacola</SheetTitle>
-            <Separator />
+          <SheetHeader>
+            <SheetTitle className="text-left">Sacola</SheetTitle>
           </SheetHeader>
 
-          <Cart />
+          <Cart setIsOpen={setIsCartOpen} />
         </SheetContent>
       </Sheet>
 
@@ -184,11 +182,12 @@ const ProductDetails = ({
         open={isConfirmationDialogOpen}
         onOpenChange={setIsConfirmationDialogOpen}
       >
-        <AlertDialogContent className="space-y-4">
+        <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle className="text-center">Um momento!</AlertDialogTitle>
-            <AlertDialogDescription className="text-center">
-              Você só pode adicionar itens de um restaurante por vez! <br />
+            <AlertDialogTitle>
+              Você só pode adicionar itens de um restaurante por vez
+            </AlertDialogTitle>
+            <AlertDialogDescription>
               Deseja mesmo adicionar esse produto? Isso limpará sua sacola
               atual.
             </AlertDialogDescription>

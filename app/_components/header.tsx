@@ -38,9 +38,9 @@ export default function Header() {
             <Beef className="h-6 w-6" />
             <span className="text-lg font-bold">Tempero Tech</span>
           </Link>
-
+          <div className="lg:hidden">
           <MobileMenu data={data} />
-
+          </div>
           <div className="hidden lg:flex lg:flex-1">
             <Search />
           </div>

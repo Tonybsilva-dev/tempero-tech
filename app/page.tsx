@@ -27,7 +27,7 @@ const Home = async () => {
 
   return (
     <>
-      <div className="space-y-4 pt-8">
+      <div className="space-y-4 pt-16">
         <CategoryList />
       </div>
       {/* <div className=" lg:w-lg mx-auto max-w-4xl">

@@ -89,8 +89,10 @@ const MobileMenu = ({ data }: any) => {
                   variant="ghost"
                   className="w-full justify-start space-x-3 rounded-md text-sm font-normal hover:bg-zinc-100"
                 >
-                  <Heart size={16} />
-                  <span className="block">Restaurantes Favoritos</span>
+                  <Link href="/my-favorite-restaurants">
+                    <Heart size={16} />
+                    <span className="block">Restaurantes Favoritos</span>
+                  </Link>
                 </Button>
               </>
             )}
