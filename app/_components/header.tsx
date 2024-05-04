@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Beef, Bell, ShoppingCart } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
 import { Separator } from "./ui/separator";
@@ -11,24 +11,13 @@ import Search from "./search";
 import { Button } from "./ui/button";
 import UserMenu from "./user-menu";
 import MobileMenu from "./mobile-menu";
+import { CartContext } from "../_contexts/cart";
 
 export default function Header() {
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const { data, status } = useSession();
-  const [cartItemCount, setCartItemCount] = useState(0);
+  const { totalQuantity } = useContext(CartContext);
 
-  useEffect(() => {
-    const cartData = localStorage.getItem("@tempero-tech:cart");
-    if (cartData) {
-      const parsedCartData: any[] = JSON.parse(cartData);
-
-      const itemCount = parsedCartData.reduce(
-        (acc, item) => acc + item.quantity,
-        0,
-      );
-      setCartItemCount(itemCount);
-    }
-  }, []);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   return (
     <>
@@ -39,7 +28,7 @@ export default function Header() {
             <span className="text-lg font-bold">Tempero Tech</span>
           </Link>
           <div className="lg:hidden">
-          <MobileMenu data={data} />
+            <MobileMenu data={data} />
           </div>
           <div className="hidden lg:flex lg:flex-1">
             <Search />
@@ -54,7 +43,7 @@ export default function Header() {
             >
               <ShoppingCart className="h-6 w-6" />
               <span className="absolute -right-2 -top-2 rounded-full bg-yellow-500 px-2 text-xs text-white">
-                {cartItemCount}
+                {totalQuantity}
               </span>
             </Button>
             <Button className="relative" size="icon" variant="ghost">
@@ -74,7 +63,7 @@ export default function Header() {
             <SheetTitle className="text-left text-xl">Sacola</SheetTitle>
             <Separator />
           </SheetHeader>
-          <Cart setIsOpen={setIsCartOpen}/>
+          <Cart setIsOpen={setIsCartOpen} />
         </SheetContent>
       </Sheet>
     </>

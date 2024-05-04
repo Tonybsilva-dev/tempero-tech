@@ -74,26 +74,24 @@ const MobileMenu = ({ data }: any) => {
 
             {data?.user && (
               <>
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start space-x-3 rounded-md text-sm font-normal hover:bg-zinc-100"
-                  asChild
-                >
-                  <Link href="/my-orders">
+                <Link href="/my-orders">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start space-x-3 rounded-md text-sm font-normal hover:bg-zinc-100"
+                  >
                     <ScrollText size={16} />
                     <span className="block">Meus Pedidos</span>
-                  </Link>
-                </Button>
-
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start space-x-3 rounded-md text-sm font-normal hover:bg-zinc-100"
-                >
-                  <Link href="/my-favorite-restaurants">
+                  </Button>
+                </Link>
+                <Link href="/my-favorite-restaurants" className="flex space-y-2">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start space-x-3 rounded-md text-sm font-normal hover:bg-zinc-100"
+                  >
                     <Heart size={16} />
                     <span className="block">Restaurantes Favoritos</span>
-                  </Link>
-                </Button>
+                  </Button>
+                </Link>
               </>
             )}
           </div>

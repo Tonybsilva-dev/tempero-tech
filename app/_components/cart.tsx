@@ -7,7 +7,7 @@ import { Button } from "./ui/button";
 import { createOrder } from "../_actions/order";
 import { OrderStatus } from "@prisma/client";
 import { useSession } from "next-auth/react";
-import { Loader2 } from "lucide-react";
+import { Loader2, ShoppingCartIcon } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -147,7 +147,10 @@ const Cart = ({ setIsOpen }: CartProps) => {
             </Button>
           </>
         ) : (
-          <h2 className="text-left font-medium">Sua sacola está vazia.</h2>
+          <div className="flex flex-col h-[85vh] flex-1 items-center justify-center gap-2">
+            <ShoppingCartIcon className="h-5 w-5" />
+            <h2 className="text-left font-medium">Sua sacola está vazia.</h2>
+          </div>
         )}
       </div>
 

@@ -184,10 +184,9 @@ const ProductDetails = ({
       >
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>
-              Você só pode adicionar itens de um restaurante por vez
-            </AlertDialogTitle>
+            <AlertDialogTitle>Um momento...</AlertDialogTitle>
             <AlertDialogDescription>
+              Você só pode adicionar itens de um restaurante por vez <br />
               Deseja mesmo adicionar esse produto? Isso limpará sua sacola
               atual.
             </AlertDialogDescription>
