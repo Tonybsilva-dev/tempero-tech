@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { MapPin } from "lucide-react";
 import {
@@ -16,6 +16,14 @@ import Spinner from "./spinner";
 const LocationButton: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
+  const [permissionStatus, setPermissionStatus] =
+    useState<PermissionState | null>(null);
+
+  useEffect(() => {
+    navigator.permissions
+      .query({ name: "geolocation" })
+      .then((result) => setPermissionStatus(result.state));
+  }, []);
 
   const getLocation = () => {
     setIsLoading(true);
@@ -54,7 +62,13 @@ const LocationButton: React.FC = () => {
   };
 
   const handleClick = () => {
-    setIsConfirmDialogOpen(true);
+    if (permissionStatus === "granted") {
+      getLocation();
+    } else if (permissionStatus === "prompt") {
+      setIsConfirmDialogOpen(true);
+    } else {
+      alert("Localização não disponível, permissão foi negada.");
+    }
   };
 
   return (
@@ -69,7 +83,9 @@ const LocationButton: React.FC = () => {
       >
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Compartilhar Localização?</AlertDialogTitle>
+            <AlertDialogTitle>
+              Deseja compartilhar sua localização?
+            </AlertDialogTitle>
             <AlertDialogDescription>
               Isso nos ajudará a fornecer informações relevantes com base na sua
               localização atual.
