@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useContext, useState } from "react";
-import { Beef, Bell, ShoppingCart } from "lucide-react";
+import { Bell, ShoppingCart } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
 import { Separator } from "./ui/separator";
 import Cart from "./cart";
@@ -12,6 +12,7 @@ import { Button } from "./ui/button";
 import UserMenu from "./user-menu";
 import MobileMenu from "./mobile-menu";
 import { CartContext } from "../_contexts/cart";
+import Image from "next/image";
 
 export default function Header() {
   const { data, status } = useSession();
@@ -24,7 +25,7 @@ export default function Header() {
       <header className="fixed top-0 z-50 w-full bg-white shadow-md dark:bg-gray-950 dark:text-gray-50">
         <div className="container flex h-16 items-center justify-between px-4 md:px-6">
           <Link className="flex items-center gap-2" href="/">
-            <Beef className="h-6 w-6" />
+            <Image src={"/logo/logo-3.png"} width={24} height={24} alt="tempero tech logo" />
             <span className="text-lg font-bold">Tempero Tech</span>
           </Link>
           <div className="lg:hidden">

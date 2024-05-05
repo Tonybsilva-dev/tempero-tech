@@ -7,6 +7,7 @@ import { db } from "./_lib/prisma";
 import RestaurantList from "./_components/restaurant-list";
 import Link from "next/link";
 import Image from "next/image";
+import Footer from "./_components/footer";
 
 const Home = async () => {
   const products = await db.product.findMany({
@@ -113,6 +114,7 @@ const Home = async () => {
           <RestaurantList />
         </div>
       </section>
+      <Footer />
     </>
   );
 };
