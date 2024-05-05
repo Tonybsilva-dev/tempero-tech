@@ -1,10 +1,21 @@
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { MapPin } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "./ui/alert-dialog";
 import Spinner from "./spinner";
 
 const LocationButton: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
 
   const getLocation = () => {
     setIsLoading(true);
@@ -16,7 +27,7 @@ const LocationButton: React.FC = () => {
         return;
       }
       alert(`${city} - ${street}.`);
-      setIsLoading(false); // Defina isLoading como falso após a conclusão da operação
+      setIsLoading(false);
     };
 
     if (navigator.geolocation) {
@@ -28,7 +39,7 @@ const LocationButton: React.FC = () => {
         (error) => {
           console.error("Erro ao obter a localização:", error);
           alert("Erro ao obter a localização.");
-          setIsLoading(false); // Defina isLoading como falso em caso de erro
+          setIsLoading(false);
         },
       );
     } else {
@@ -37,17 +48,43 @@ const LocationButton: React.FC = () => {
     }
   };
 
-  const Element = isLoading ? (
-    <Button variant={"ghost"} size={"icon"}>
-      <Spinner />{" "}
-    </Button>
-  ) : (
-    <Button variant={"ghost"} size={"icon"} onClick={getLocation}>
-      <MapPin className="h-6 w-6" />
-    </Button>
-  );
+  const handleConfirm = () => {
+    setIsConfirmDialogOpen(false);
+    getLocation();
+  };
 
-  return Element;
+  const handleClick = () => {
+    setIsConfirmDialogOpen(true);
+  };
+
+  return (
+    <>
+      <Button variant={"ghost"} size={"icon"} onClick={handleClick}>
+        {isLoading ? <Spinner /> : <MapPin className="h-6 w-6" />}
+      </Button>
+
+      <AlertDialog
+        open={isConfirmDialogOpen}
+        onOpenChange={setIsConfirmDialogOpen}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Compartilhar Localização?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Isso nos ajudará a fornecer informações relevantes com base na sua
+              localização atual.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={handleConfirm}>
+              Compartilhar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
+  );
 };
 
 export default LocationButton;
