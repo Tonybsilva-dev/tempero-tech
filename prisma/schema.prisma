@@ -13,6 +13,8 @@ model Restaurant {
   imageUrl               String
   deliveryFee            Decimal                  @db.Decimal(10, 2)
   deliveryTimeMinutes    Int
+  latitude               Float?
+  longitude              Float?
   categories             Category[]
   products               Product[]
   order                  Order[]
