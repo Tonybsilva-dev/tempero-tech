@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-// import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/header";
 import { CartProvider } from "./_contexts/cart";
 import AuthProvider from "./_providers/auth";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "./_components/ui/sonner";
-// const inter = Inter({ subsets: ["latin"] });
-
+import "leaflet/dist/leaflet.css";
 export const metadata: Metadata = {
   title: {
     template: "%s | Tempero Tech",

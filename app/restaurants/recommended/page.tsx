@@ -13,6 +13,7 @@ const RecommendedRestaurants = async () => {
       restaurant: true,
     },
   });
+  
   const restaurants = await db.restaurant.findMany({});
 
   return (
