@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import { db } from "../_lib/prisma";
 import { getDistanceFromLatLonInKm } from "../_helpers/calculate-distance";
+import { Restaurant } from "@prisma/client";
 
 interface Coordinates {
   latitude: number;
@@ -20,17 +21,30 @@ const userCoordinates: Coordinates = {
 const radius = 15; // Distance in kilometers
 
 const Map = async () => {
-  const restaurants = await db.restaurant.findMany();
+  const restaurants = await db.restaurant.findMany({
+    include: {
+      address: {
+        include: {
+          geo: true,
+        },
+      },
+    },
+  });
+
   const nearbyRestaurants = restaurants.filter((restaurant) => {
-    if (restaurant.latitude && restaurant.longitude) {
+    const { address } = restaurant;
+    const { geo } = address ?? {};
+
+    if (geo?.lat && geo?.lng) {
       const distance = getDistanceFromLatLonInKm(userCoordinates, {
-        latitude: restaurant.latitude,
-        longitude: restaurant.longitude,
+        latitude: geo.lat,
+        longitude: geo.lng,
       });
       return distance <= radius;
     }
     return false;
   });
+
   return (
     <div>
       <Head>
@@ -39,7 +53,22 @@ const Map = async () => {
           href="https://unpkg.com/leaflet/dist/leaflet.css"
         />
       </Head>
-      <DynamicMap restaurants={nearbyRestaurants} />
+      <DynamicMap
+        restaurants={
+          nearbyRestaurants as (Restaurant & {
+            address?: {
+              street: string;
+              suite: string;
+              city: string;
+              zipcode: string;
+              geo?: {
+                lat: number;
+                lng: number;
+              };
+            };
+          })[]
+        }
+      />
     </div>
   );
 };

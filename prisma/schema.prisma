@@ -13,12 +13,30 @@ model Restaurant {
   imageUrl               String
   deliveryFee            Decimal                  @db.Decimal(10, 2)
   deliveryTimeMinutes    Int
-  latitude               Float?
-  longitude              Float?
+  addressId              String?                  @unique
+  address                Address?                 @relation(fields: [addressId], references: [id])
   categories             Category[]
   products               Product[]
   order                  Order[]
   UserFavoriteRestaurant UserFavoriteRestaurant[]
+}
+
+model Address {
+  id         String      @id @default(uuid())
+  street     String
+  suite      String
+  city       String
+  zipcode    String
+  geoId      String      @unique
+  geo        Geo         @relation(fields: [geoId], references: [id])
+  restaurant Restaurant?
+}
+
+model Geo {
+  id      String   @id @default(uuid())
+  lat     Float
+  lng     Float
+  address Address?
 }
 
 model UserFavoriteRestaurant {
