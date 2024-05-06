@@ -4,6 +4,8 @@ import Header from "./_components/header";
 import { CartProvider } from "./_contexts/cart";
 import AuthProvider from "./_providers/auth";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 import { Toaster } from "./_components/ui/sonner";
 import "leaflet/dist/leaflet.css";
 export const metadata: Metadata = {
@@ -32,6 +34,7 @@ export default function RootLayout({
         </AuthProvider>
         <Toaster />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
