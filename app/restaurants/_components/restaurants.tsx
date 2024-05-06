@@ -4,7 +4,6 @@ import { Restaurant, UserFavoriteRestaurant } from "@prisma/client";
 import { notFound, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { searchForRestaurants } from "../_actions/search";
-import Header from "@/app/_components/header";
 import RestaurantItem from "@/app/_components/restaurant-item";
 
 interface RestaurantProps {
@@ -33,10 +32,16 @@ const Restaurants = ({ userFavoriteRestaurants }: RestaurantProps) => {
 
   return (
     <>
-      <Header />
-      <div className="px-5 py-6">
-        <h2 className="mb-6 text-lg font-semibold">Restaurantes Encontrados</h2>
-        <div className="flex w-full flex-col gap-6">
+      <section
+        className="bg-transparent px-6 py-16 md:px-8 lg:px-10"
+        id="products"
+      >
+        <div className="container mx-auto">
+          <h2 className="mb-8 flex justify-between text-3xl font-bold">
+            Restaurantes encontrados
+          </h2>
+        </div>
+        <div className="container grid grid-cols-2 justify-items-center gap-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8">
           {restaurants.map((restaurant) => (
             <RestaurantItem
               key={restaurant.id}
@@ -46,7 +51,7 @@ const Restaurants = ({ userFavoriteRestaurants }: RestaurantProps) => {
             />
           ))}
         </div>
-      </div>
+      </section>
     </>
   );
 };
