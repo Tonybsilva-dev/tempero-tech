@@ -17,13 +17,10 @@ const userCoordinates: Coordinates = {
   longitude: -35.867335, // Example longitude
 };
 
-interface MapProps {
-  categoryId?: string;
-}
 
 const radius = 15; // Distance in kilometers
 
-const Map = async ({ categoryId }: MapProps) => {
+const Map = async () => {
   const restaurants = await db.restaurant.findMany({
     include: {
       address: {
@@ -32,13 +29,6 @@ const Map = async ({ categoryId }: MapProps) => {
         },
       },
       categories: true,
-    },
-    where: {
-      categories: {
-        some: {
-          id: categoryId,
-        },
-      },
     },
   });
 
