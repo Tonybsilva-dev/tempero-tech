@@ -4,28 +4,39 @@ import { db } from "../_lib/prisma";
 import { getDistanceFromLatLonInKm } from "../_helpers/calculate-distance";
 import { Restaurant } from "@prisma/client";
 
+const DynamicMap = dynamic(() => import("./_components/map"), {
+  ssr: false,
+});
 interface Coordinates {
   latitude: number;
   longitude: number;
 }
-
-const DynamicMap = dynamic(() => import("./_components/map"), {
-  ssr: false,
-});
 
 const userCoordinates: Coordinates = {
   latitude: -7.1055274, // Example latitude
   longitude: -35.867335, // Example longitude
 };
 
+interface MapProps {
+  categoryId?: string;
+}
+
 const radius = 15; // Distance in kilometers
 
-const Map = async () => {
+const Map = async ({ categoryId }: MapProps) => {
   const restaurants = await db.restaurant.findMany({
     include: {
       address: {
         include: {
           geo: true,
+        },
+      },
+      categories: true,
+    },
+    where: {
+      categories: {
+        some: {
+          id: categoryId,
         },
       },
     },
@@ -68,6 +79,7 @@ const Map = async () => {
             };
           })[]
         }
+        radius={radius}
       />
     </div>
   );
