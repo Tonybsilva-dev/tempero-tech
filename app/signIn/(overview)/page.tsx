@@ -14,13 +14,13 @@ export default function SignInPage() {
         <Image
           alt="Imagem de um chef"
           className="aspect-[3/3] w-full overflow-hidden rounded-lg object-cover dark:border-gray-800"
-          height={900}
+          height={800}
           width={600}
           loading="lazy"
           src={`${imageURL}/da52e0f9-24f0-44d0-a647-cc6ccc85b6f0-1tfba.svg`}
         />
       </div>
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center -mt-[250px] md:mt-0">
         <div className="w-full max-w-md rounded-lg bg-white p-6 dark:bg-gray-800">
           <h2 className="mb-1 text-center text-3xl font-bold lg:text-4xl">
             Acessar conta

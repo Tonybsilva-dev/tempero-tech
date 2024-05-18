@@ -13,11 +13,16 @@ import { Sheet, SheetTrigger, SheetContent } from "./ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Separator } from "./ui/separator";
 import Link from "next/link";
-import { signIn, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const MobileMenu = ({ data }: any) => {
+  const router = useRouter();
+
   const [isOpen, setIsOpen] = useState(false);
   const avatarImage = data?.user?.image ?? "/user.svg";
+
+  const handleGoToSignInPage = () => router.push("/signIn");
 
   return (
     <>
@@ -57,7 +62,7 @@ const MobileMenu = ({ data }: any) => {
             <>
               <div className="flex items-center justify-between pt-10">
                 <h2 className="font-semibold">Olá. Faça seu login!</h2>
-                <Button size="icon" onClick={() => signIn()}>
+                <Button size="icon" onClick={handleGoToSignInPage}>
                   <LogIn />
                 </Button>
               </div>
