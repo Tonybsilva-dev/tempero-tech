@@ -22,15 +22,9 @@ export default function Footer() {
           <div className="flex gap-4">
             <Link
               className="text-sm underline-offset-4 hover:underline"
-              href="#"
+              href="/terms-and-conditions"
             >
-              Privacy
-            </Link>
-            <Link
-              className="text-sm underline-offset-4 hover:underline"
-              href="#"
-            >
-              Terms of Service
+              Terms of Service and Privacy
             </Link>
           </div>
         </div>

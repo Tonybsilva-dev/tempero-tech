@@ -1,3 +1,5 @@
+"use client";
+
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -8,11 +10,16 @@ import {
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
 import { User, Settings, LogOut, LogIn, Heart, ScrollText } from "lucide-react";
-import { signOut, signIn } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const UserMenu = ({ status, data }: any) => {
+  const router = useRouter();
+
+  const GoToSignInPage = () => router.push("/signIn");
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -24,6 +31,7 @@ const UserMenu = ({ status, data }: any) => {
               }
               width={24}
               height={24}
+              className="rounded"
             />
             <AvatarFallback>
               {data?.user?.name?.split(" ")[0][0]}
@@ -43,6 +51,7 @@ const UserMenu = ({ status, data }: any) => {
               <User className="mr-2 h-4 w-4" />
               Perfil
             </DropdownMenuItem>
+
             <Link href="/my-orders">
               <DropdownMenuItem>
                 <ScrollText className="mr-2 h-4 w-4" />
@@ -68,7 +77,7 @@ const UserMenu = ({ status, data }: any) => {
             </DropdownMenuItem>
           </>
         ) : (
-          <DropdownMenuItem onClick={() => signIn()}>
+          <DropdownMenuItem onClick={GoToSignInPage}>
             <LogIn className="mr-2 h-4 w-4" />
             Logar
           </DropdownMenuItem>

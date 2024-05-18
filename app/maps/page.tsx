@@ -17,7 +17,6 @@ const userCoordinates: Coordinates = {
   longitude: -35.867335, // Example longitude
 };
 
-
 const radius = 15; // Distance in kilometers
 
 const Map = async () => {

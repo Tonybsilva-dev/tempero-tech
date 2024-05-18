@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Circle } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import Image from "next/image";
-import Loading from "@/app/loading";
 import { Button } from "@/app/_components/ui/button";
 import Link from "next/link";
 import { Restaurant } from "@prisma/client";
@@ -21,6 +20,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/app/_components/ui/alert-dialog";
+import MapLoading from "../loading";
 
 type MapProps = {
   restaurants: (Restaurant & {
@@ -131,7 +131,7 @@ const Map = ({ restaurants, radius }: MapProps) => {
       </AlertDialog>
 
       {isLoading ? (
-        <Loading />
+        <MapLoading />
       ) : permissionStatus === "denied" ? (
         <div className="flex h-screen flex-col items-center justify-center gap-4">
           <p className="text-center text-gray-700">
@@ -151,7 +151,7 @@ const Map = ({ restaurants, radius }: MapProps) => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Circle 
+          <Circle
             center={position}
             radius={radius * 1000}
             color="yellow"

@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { Button } from "./ui/button";
-import { Heart, Home, LogIn, LogOut, Menu, ScrollText } from "lucide-react";
+import {
+  Heart,
+  Home,
+  LogIn,
+  LogOut,
+  Map,
+  Menu,
+  ScrollText,
+} from "lucide-react";
 import { Sheet, SheetTrigger, SheetContent } from "./ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Separator } from "./ui/separator";
@@ -71,6 +79,15 @@ const MobileMenu = ({ data }: any) => {
                 <span className="block">Início</span>
               </Button>
             </Link>
+            <Link href="/maps">
+              <Button
+                variant="ghost"
+                className="w-full justify-start space-x-3 rounded-md text-sm font-normal hover:bg-zinc-100"
+              >
+                <Map size={16} />
+                <span className="block">Mapa</span>
+              </Button>
+            </Link>
 
             {data?.user && (
               <>
@@ -83,7 +100,10 @@ const MobileMenu = ({ data }: any) => {
                     <span className="block">Meus Pedidos</span>
                   </Button>
                 </Link>
-                <Link href="/my-favorite-restaurants" className="flex space-y-2">
+                <Link
+                  href="/my-favorite-restaurants"
+                  className="flex space-y-2"
+                >
                   <Button
                     variant="ghost"
                     className="w-full justify-start space-x-3 rounded-md text-sm font-normal hover:bg-zinc-100"

@@ -1,6 +1,7 @@
 import { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
+import ZohoProvider from "next-auth/providers/zoho";
 
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "@/app/_lib/prisma";
@@ -17,6 +18,10 @@ export const authOptions: AuthOptions = {
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID as string,
       clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+    }),
+    ZohoProvider({
+      clientId: process.env.ZOHO_CLIENT_ID,
+      clientSecret: process.env.ZOHO_CLIENT_SECRET
     })
   ],
   callbacks: {

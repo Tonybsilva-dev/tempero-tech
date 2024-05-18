@@ -11,6 +11,8 @@ model Restaurant {
   id                     String                   @id @default(uuid())
   name                   String
   imageUrl               String
+  reservationFee         Decimal?                 @db.Decimal(10, 2)
+  reservationFeeMinutes  Int?
   deliveryFee            Decimal                  @db.Decimal(10, 2)
   deliveryTimeMinutes    Int
   addressId              String?                  @unique
@@ -18,7 +20,20 @@ model Restaurant {
   categories             Category[]
   products               Product[]
   order                  Order[]
+  reservations           Reservation[]
   UserFavoriteRestaurant UserFavoriteRestaurant[]
+}
+
+model Reservation {
+  id           String     @id @default(uuid())
+  date         DateTime
+  time         String
+  tableNumber  Int
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  userId       String
+  user         User       @relation(fields: [userId], references: [id])
+  status       String     @default("PENDING")
 }
 
 model Address {
@@ -145,7 +160,8 @@ model User {
   accounts               Account[]
   sessions               Session[]
   order                  Order[]
-  UserFavoriteRestaurant UserFavoriteRestaurant[]
+  userFavoriteRestaurant UserFavoriteRestaurant[]
+  reservation            Reservation[]
 
   @@map("users")
 }

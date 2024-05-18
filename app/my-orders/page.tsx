@@ -3,6 +3,7 @@ import { db } from "../_lib/prisma";
 import { redirect } from "next/navigation";
 import OrderItem from "./_components/order-item";
 import { authOptions } from "../_lib/auth";
+import Image from "next/image";
 
 const MyOrdersPage = async () => {
   const session = await getServerSession(authOptions);
@@ -36,11 +37,20 @@ const MyOrdersPage = async () => {
             Meus pedidos
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {orders.length > 0 ? (
               orders.map((order) => <OrderItem key={order.id} order={order} />)
             ) : (
-              <p>Nenhum pedido encontrado.</p>
+              <>
+              <p>Você ainda não realizou nenhum pedido.</p>
+              <Image
+                alt="Imagem um lugar sem pedidos"
+                className="aspect-[3/3] w-full overflow-hidden rounded-lg object-cover dark:border-gray-800"
+                width={800}
+                height={800}
+                src="/empty.svg"
+              />
+              </>
             )}
           </div>
         </div>

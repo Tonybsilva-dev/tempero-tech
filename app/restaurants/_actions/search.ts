@@ -14,3 +14,13 @@ export const searchForRestaurants = async (search: string) => {
 
   return restaurants;
 };
+
+export const searchForUniqueRestaurants = async (id: string) => {
+  const restaurant = await db.restaurant.findFirst({
+    where: {
+      id: id,
+    }
+  });
+
+  return restaurant;
+};

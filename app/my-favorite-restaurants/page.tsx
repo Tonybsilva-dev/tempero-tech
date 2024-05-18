@@ -3,6 +3,7 @@ import { db } from "../_lib/prisma";
 import { authOptions } from "../_lib/auth";
 import { notFound } from "next/navigation";
 import RestaurantItem from "../_components/restaurant-item";
+import Image from "next/image";
 
 const MyFavoriteRestaurants = async () => {
   const session = await getServerSession(authOptions);
@@ -42,9 +43,20 @@ const MyFavoriteRestaurants = async () => {
               ))}
           </div>
           {userFavoriteRestaurants.length === 0 && (
-            <h3 className="font-medium">
-              Você ainda não marcou nenhum restaurante como favorito.
-            </h3>
+            <>
+              <h3 className="font-medium">
+                Você ainda não marcou nenhum restaurante como favorito.
+              </h3>
+              <div className="flex items-center justify-center">
+                <Image
+                  alt="Imagem um lugar sem pedidos"
+                  className="aspect-[1/1] self-center overflow-hidden rounded-lg object-cover dark:border-gray-800"
+                  width={400}
+                  height={400}
+                  src="/restaurant.svg"
+                />
+              </div>
+            </>
           )}
         </div>
       </section>
