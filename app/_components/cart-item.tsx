@@ -34,6 +34,8 @@ const CartItem = ({ cartProduct }: CartItemProps) => {
           <Image
             src={cartProduct.imageUrl}
             alt={cartProduct.name}
+            quality={75}
+            sizes="100%"
             fill
             className="rounded-lg object-cover"
           />

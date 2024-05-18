@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { authOptions } from "../_lib/auth";
 import { db } from "../_lib/prisma";
 import ReservationItem from "./_components/reversation-item";
-import Image from "next/image";
+import NotFoundReservations from "./_components/not-found-reservations";
 
 const MyReservationsPage = async () => {
   const session = await getServerSession(authOptions);
@@ -42,20 +42,7 @@ const MyReservationsPage = async () => {
             ))}
           </div>
           {userReservations?.reservation.length === 0 && (
-            <>
-              <h3 className="font-medium">
-                Você ainda não marcou nenhuma reserva em um restaurante.
-              </h3>
-              <div className="flex items-center justify-center">
-                <Image
-                  alt="Imagem um lugar sem pedidos"
-                  className="aspect-[1/1] self-center overflow-hidden rounded-lg object-cover dark:border-gray-800"
-                  width={400}
-                  height={400}
-                  src="/schedule.svg"
-                />
-              </div>
-            </>
+            <NotFoundReservations />
           )}
         </div>
       </section>

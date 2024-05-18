@@ -25,7 +25,14 @@ export default function Header() {
       <header className="fixed top-0 z-50 w-full bg-white shadow-md dark:bg-gray-950 dark:text-gray-50">
         <div className="container flex h-16 items-center justify-between px-4 md:px-6">
           <Link className="flex items-center gap-2" href="/">
-            <Image src={"/logo/logo-3.png"} width={24} height={24} alt="tempero tech logo" />
+            <Image
+              src={"/logo/logo-3.png"}
+              width={24}
+              height={24}
+              alt="tempero tech logo"
+              quality={75}
+              sizes="100%"
+            />
             <span className="text-lg font-bold">Tempero Tech</span>
           </Link>
           <div className="lg:hidden">

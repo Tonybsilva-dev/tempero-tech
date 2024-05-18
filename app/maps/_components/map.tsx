@@ -20,7 +20,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/app/_components/ui/alert-dialog";
-import MapLoading from "../loading";
+import Loading from "@/app/loading";
 
 type MapProps = {
   restaurants: (Restaurant & {
@@ -131,7 +131,7 @@ const Map = ({ restaurants, radius }: MapProps) => {
       </AlertDialog>
 
       {isLoading ? (
-        <MapLoading />
+        <Loading />
       ) : permissionStatus === "denied" ? (
         <div className="flex h-screen flex-col items-center justify-center gap-4">
           <p className="text-center text-gray-700">
@@ -145,7 +145,12 @@ const Map = ({ restaurants, radius }: MapProps) => {
         <MapContainer
           center={position ?? defaultCenter}
           zoom={16}
-          style={{ height: "100vh", width: "100%", zIndex: 10 }}
+          style={{
+            height: "100vh",
+            width: "100%",
+            zIndex: 10,
+            marginTop: "12px",
+          }}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -154,9 +159,9 @@ const Map = ({ restaurants, radius }: MapProps) => {
           <Circle
             center={position}
             radius={radius * 1000}
-            color="yellow"
-            fillColor="yellow"
-            fillOpacity={0.1}
+            color="green"
+            fillColor="green"
+            fillOpacity={0.01}
           />
           {restaurants.map((restaurant) => {
             const geo = restaurant.address?.geo;
@@ -173,6 +178,7 @@ const Map = ({ restaurants, radius }: MapProps) => {
                         <Image
                           alt="Card Image"
                           src={restaurant.imageUrl}
+                          quality={75}
                           fill
                           sizes="100%"
                           className="rounded-md object-cover"

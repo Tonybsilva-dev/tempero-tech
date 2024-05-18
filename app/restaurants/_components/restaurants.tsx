@@ -5,6 +5,7 @@ import { notFound, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { searchForRestaurants } from "../_actions/search";
 import RestaurantItem from "@/app/_components/restaurant-item";
+import NotFoundRestaurants from "./not-found-restaurants";
 
 interface RestaurantProps {
   userFavoriteRestaurants: UserFavoriteRestaurant[];
@@ -51,6 +52,7 @@ const Restaurants = ({ userFavoriteRestaurants }: RestaurantProps) => {
             />
           ))}
         </div>
+        {restaurants.length === 0 && <NotFoundRestaurants />}
       </section>
     </>
   );

@@ -24,7 +24,7 @@ export default function Footer() {
               className="text-sm underline-offset-4 hover:underline"
               href="/terms-and-conditions"
             >
-              Terms of Service and Privacy
+              Termos de serviço e privacidade
             </Link>
           </div>
         </div>

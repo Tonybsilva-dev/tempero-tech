@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Metadata } from "next";
 import SocialButtonForm from "../_components/social-buttons-fom";
+import { imageURL } from "@/app/_helpers/images";
 
 export const metadata: Metadata = {
   title: "Login",
@@ -14,8 +15,9 @@ export default function SignInPage() {
           alt="Imagem de um chef"
           className="aspect-[3/3] w-full overflow-hidden rounded-lg object-cover dark:border-gray-800"
           height={900}
-          src="/chef.svg"
           width={600}
+          loading="lazy"
+          src={`${imageURL}/da52e0f9-24f0-44d0-a647-cc6ccc85b6f0-1tfba.svg`}
         />
       </div>
       <div className="flex flex-col items-center justify-center">
@@ -24,7 +26,7 @@ export default function SignInPage() {
             Acessar conta
           </h2>
           <p className="mb-6 text-center text-xl font-thin text-zinc-500">
-            Escolha sua forma de ingresso
+            Escolha sua forma de acesso
           </p>
           <SocialButtonForm />
         </div>

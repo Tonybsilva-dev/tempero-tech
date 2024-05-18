@@ -8,6 +8,7 @@ import RestaurantList from "./_components/restaurant-list";
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "./_components/footer";
+import { imageURL } from "./_helpers/images";
 
 const Home = async () => {
   const products = await db.product.findMany({
@@ -88,9 +89,12 @@ const Home = async () => {
             <Image
               width={600}
               height={600}
+              sizes="100%"
+              quality={75}
+              loading="eager"
               alt="Hero Image"
               className="aspect-video rounded-lg shadow-lg"
-              src="/foods.png"
+              src={`${imageURL}/bb822675-15e6-40f6-a8ca-4db0f1b36e39-1m48ut.png`}
             />
           </div>
         </div>

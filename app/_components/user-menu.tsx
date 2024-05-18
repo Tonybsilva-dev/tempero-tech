@@ -19,16 +19,17 @@ const UserMenu = ({ status, data }: any) => {
   const router = useRouter();
 
   const GoToSignInPage = () => router.push("/signIn");
-
+  const avatarImage = data?.user?.image ?? "/user.svg";
+  
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button size="icon" variant="ghost">
           <Avatar>
             <AvatarImage
-              src={
-                (data?.user?.image as string | undefined) ?? "/placeholder.png"
-              }
+              src={avatarImage}
+              loading="eager"
+              sizes="100%"
               width={24}
               height={24}
               className="rounded"

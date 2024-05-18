@@ -29,6 +29,8 @@ const ProductItem = ({ product, className }: ProductItemProps) => {
           <Image
             src={product.imageUrl}
             alt={product.name}
+            quality={75}
+            sizes="100%"
             fill
             className="rounded-lg object-cover shadow-md"
           />

@@ -49,6 +49,8 @@ const RestaurantItem = ({
           <Link href={`/restaurants/${restaurant.id}`}>
             <Image
               src={restaurant.imageUrl}
+              quality={75}
+              sizes="100%"
               fill
               className="rounded-lg object-cover"
               alt={restaurant.name}

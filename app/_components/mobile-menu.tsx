@@ -17,6 +17,7 @@ import { signIn, signOut } from "next-auth/react";
 
 const MobileMenu = ({ data }: any) => {
   const [isOpen, setIsOpen] = useState(false);
+  const avatarImage = data?.user?.image ?? "/user.svg";
 
   return (
     <>
@@ -36,9 +37,7 @@ const MobileMenu = ({ data }: any) => {
               <div className="flex justify-between pt-6">
                 <div className="flex items-center gap-3">
                   <Avatar>
-                    <AvatarImage
-                      src={data?.user?.image as string | undefined}
-                    />
+                    <AvatarImage src={avatarImage} />
                     <AvatarFallback>
                       {data?.user?.name?.split(" ")[0][0]}
                       {data?.user?.name?.split(" ")[1][0]}

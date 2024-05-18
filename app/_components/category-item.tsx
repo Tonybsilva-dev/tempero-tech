@@ -16,6 +16,8 @@ const CategoryItem = ({ category }: CategoryItemProps) => {
         <Image
           src={category.imageUrl}
           alt={category.name}
+          quality={75}
+          sizes="100%"
           height={36}
           width={36}
         />
