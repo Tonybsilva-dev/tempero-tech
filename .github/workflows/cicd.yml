@@ -1,24 +1,76 @@
-name: cicd-workflow with slack integration
+name: CI/CD Workflow with Slack Integration
 on:
   push:
     branches:
       - master
       - homolog
+  pull_request:
+
 jobs:
-  job1:
+  build:
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20.x
+
+      - uses: actions/cache@v2
+        id: npm-cache
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Linting
+        run: npm run lint
+
+#      - name: Typecheck
+#        run: npm run typecheck
+
+#      - name: Test
+#        run: npm test
+
+      - name: Build
+        run: npm run build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
-    - uses: act10ns/slack@v2
-      with:
-        status: starting
-        channel: '#tempero-tech'
-        message: Starting Vercel Build Image...
-      if: always()
-    - uses: act10ns/slack@v2
-      with:
-        channel: '#tempero-tech'
-        status: ${{ job.status }}
-        steps: ${{ toJson(steps) }}
-      if: always()
+      - name: Notify Slack - Starting Deployment
+        uses: act10ns/slack@v2
+        with:
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          status: starting
+          channel: '#tempero-tech'
+          message: 'Starting Vercel Build Image...'
+        if: always()
+
+      # Adicione aqui os steps necessários para o deploy
+
+      - name: Deploy Step 1
+        run: echo "Deploy step 1"
+        # Adicione os comandos reais de deploy aqui
+
+      - name: Deploy Step 2
+        run: echo "Deploy step 2"
+        # Adicione os comandos reais de deploy aqui
+
+      - name: Notify Slack - Deployment Status
+        uses: act10ns/slack@v2
+        with:
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          channel: '#tempero-tech'
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        if: always()
