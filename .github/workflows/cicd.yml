@@ -1,4 +1,4 @@
-name: CI/CD Workflow with Slack Integration
+name: CI/CD Tempero-Tech
 on:
   push:
     branches:
@@ -12,7 +12,17 @@ jobs:
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
+      - name: Notify Slack - Starting Deployment
+        uses: act10ns/slack@v2
+        with:
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          status: starting
+          channel: '#tempero-tech'
+          message: 'Starting Vercel Build Image...'
+        if: always()
+         
       - name: Checkout Repository
         uses: actions/checkout@v2
 
@@ -44,31 +54,12 @@ jobs:
       - name: Build
         run: npm run build
 
-  deploy:
+  message:
     runs-on: ubuntu-latest
     needs: build
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
-      - name: Notify Slack - Starting Deployment
-        uses: act10ns/slack@v2
-        with:
-          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          status: starting
-          channel: '#tempero-tech'
-          message: 'Starting Vercel Build Image...'
-        if: always()
-
-      # Adicione aqui os steps necessários para o deploy
-
-      - name: Deploy Step 1
-        run: echo "Deploy step 1"
-        # Adicione os comandos reais de deploy aqui
-
-      - name: Deploy Step 2
-        run: echo "Deploy step 2"
-        # Adicione os comandos reais de deploy aqui
-
       - name: Notify Slack - Deployment Status
         uses: act10ns/slack@v2
         with:
