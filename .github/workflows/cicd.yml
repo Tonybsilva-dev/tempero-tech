@@ -1,0 +1,24 @@
+name: cicd-workflow with slack integration
+on:
+  push:
+    branches:
+      - master
+      - homolog
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    steps:
+    - uses: act10ns/slack@v2
+      with:
+        status: starting
+        channel: '#tempero-tech'
+        message: Starting Vercel Build Image...
+      if: always()
+    - uses: act10ns/slack@v2
+      with:
+        channel: '#tempero-tech'
+        status: ${{ job.status }}
+        steps: ${{ toJson(steps) }}
+      if: always()
