@@ -41,7 +41,7 @@
     "react-leaflet": "^4.2.1",
     "react-svg": "^16.1.34",
     "sonner": "^1.4.41",
-    "tailwind-merge": "^2.2.2",
+    "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
