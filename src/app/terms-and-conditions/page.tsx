@@ -1,0 +1,1 @@
+export { TermsAndConditionsContainer as default } from '../../subdomains/terms-and-conditions/containers/terms-and-conditions.container' 
