@@ -1,6 +1,8 @@
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { getProductsByCategory } from "../_actions/getProductsByCategory";
-import ProductItem from "../components/product-item";
+
+const ProductItem = dynamic(() => import("../components/product-item"));
 
 interface CategoriesInterfaceProps {
   params: {

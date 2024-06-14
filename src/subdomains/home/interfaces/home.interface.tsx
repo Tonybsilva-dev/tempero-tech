@@ -1,13 +1,16 @@
-import { Button } from "@/_src/app/_components/ui/button";
-import { getDiscountedProducts } from "../_actions/getDiscountedProducts";
-import CategoryList from "../components/category-list";
-import Footer from "../components/footer";
-import ProductList from "../components/product-list";
-import RestaurantList from "../components/restaurant-list";
-import Link from "next/link";
-import { ArrowRightIcon, ChevronRightIcon } from "lucide-react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/_src/app/_components/ui/button";
+import Footer from "../components/footer";
+import { ArrowRightIcon, ChevronRightIcon } from "lucide-react";
 import { imageURL } from "@/src/shared/modules/utils/image";
+
+const ProductList = dynamic(() => import("../components/product-list"));
+const RestaurantList = dynamic(() => import("../components/restaurant-list"));
+const CategoryList = dynamic(() => import("../components/category-list"));
+
+import { getDiscountedProducts } from "../_actions/getDiscountedProducts";
 
 export const HomeInterface = async () => {
   const products = await getDiscountedProducts();

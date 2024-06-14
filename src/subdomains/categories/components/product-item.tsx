@@ -34,6 +34,7 @@ const ProductItem = ({ product, className }: ProductItemProps) => {
             alt={product.name}
             quality={75}
             sizes="100%"
+            loading="lazy"
             fill
             className="rounded-lg object-cover shadow-md"
           />
