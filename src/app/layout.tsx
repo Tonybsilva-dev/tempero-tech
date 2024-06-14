@@ -8,6 +8,7 @@ import Header from "../subdomains/home/components/header";
 import { Toaster } from "../shared/_components/ui/sonner";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import ScrollToTopButton from "../shared/_components/scroll-to-top-button";
 
 export const metadata: Metadata = {
   title: {
@@ -35,7 +36,10 @@ export default function RootLayout({
           <CartProvider>
             <div className="space-y-8">
               <Header />
-              <div className="pt-6">{children}</div>
+              <div className="pt-6">
+                {children}
+                <ScrollToTopButton />
+              </div>
             </div>
           </CartProvider>
         </AuthProvider>
