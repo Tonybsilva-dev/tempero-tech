@@ -1,9 +1,16 @@
+'use client'
+
 import Image from "next/image";
 import { imageURL } from "../shared/modules/utils/image";
+import { Button } from "../shared/_components/ui/button";
+import { useRouter } from "next/navigation";
 
 export default function Custom404() {
+  const router = useRouter();
+  const handleBack = () => router.back();
+
   return (
-    <main className="flex h-[90vh] w-full flex-1 flex-col items-center justify-center">
+    <main className="flex h-screen lg:h-[90vh] w-full flex-1 flex-col items-center justify-center">
       <Image
         alt="página não encontrada"
         className="overflow-hidden rounded-lg object-cover dark:border-gray-800"
@@ -16,6 +23,13 @@ export default function Custom404() {
       <p className="mt-8 text-sm font-bold leading-relaxed text-zinc-500 lg:text-xl">
         A página que você estava procurando pode não existir.
       </p>
+      <Button
+        onClick={handleBack}
+        className="container mt-8 max-w-sm lg:max-w-xl"
+      >
+        {" "}
+        Voltar{" "}
+      </Button>
     </main>
   );
 }
