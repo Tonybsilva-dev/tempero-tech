@@ -2,7 +2,6 @@
 
 import { db } from "@/src/shared/modules/infrastructure/database/prisma";
 
-
 export const getDiscountedProducts = async () => {
   return await db.product.findMany({
     where: {
