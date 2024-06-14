@@ -29,14 +29,14 @@ const ScrollToTopButton = () => {
   }, []);
 
   return (
-    <div className="bottom-20 fixed right-5">
+    <div className="fixed bottom-20 right-5 lg:right-6">
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="flex items-center justify-evenly rounded-full bg-zinc-800 p-3 text-white shadow-lg transition duration-300 hover:bg-gray-700 text-sm font-medium"
+          className="flex items-center justify-evenly rounded-full bg-stone-800 p-3 text-sm font-medium text-white shadow-lg transition duration-300 hover:bg-gray-700"
         >
-          <ChevronUp className="mr-0 lg:mr-2 text-zinc-300" />
-          <p className="hidden lg:block text-zinc-300 lg:mr-3">Para cima</p>
+          <ChevronUp className="mr-0 text-zinc-300 lg:mr-2" />
+          <p className="hidden text-zinc-300 lg:mr-3 lg:block">Para cima</p>
         </button>
       )}
     </div>

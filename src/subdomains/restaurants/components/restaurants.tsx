@@ -42,7 +42,7 @@ const Restaurants = ({ userFavoriteRestaurants }: RestaurantProps) => {
             Restaurantes encontrados
           </h2>
         </div>
-        <div className="container grid grid-cols-2 justify-items-center gap-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8">
+        <div className="container grid grid-cols-2 justify-items-center gap-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-6">
           {restaurants.map((restaurant) => (
             <RestaurantItem
               key={restaurant.id}
