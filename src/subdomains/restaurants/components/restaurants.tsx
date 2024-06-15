@@ -1,11 +1,13 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Restaurant, UserFavoriteRestaurant } from "@prisma/client";
 import { notFound, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import NotFoundRestaurants from "./not-found-restaurants";
 import { searchForRestaurants } from "../_actions/search";
-import RestaurantItem from "../../home/components/restaurant-item";
+
+const RestaurantItem = dynamic(() => import("../../home/components/restaurant-item"));
+const NotFoundRestaurants = dynamic(() => import("./not-found-restaurants"));
 
 interface RestaurantProps {
   userFavoriteRestaurants: UserFavoriteRestaurant[];

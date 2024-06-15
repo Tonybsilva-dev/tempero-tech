@@ -56,6 +56,7 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
   if (!restaurant) {
     return notFound();
   }
+  
   const session = await getServerSession(authOptions);
 
   const userFavoriteRestaurants = await db.userFavoriteRestaurant.findMany({

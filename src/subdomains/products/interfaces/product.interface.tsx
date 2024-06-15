@@ -1,7 +1,10 @@
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { getProduct } from "../_actions/getProduct";
-import ProductImage from "../components/product-image";
-import ProductDetails from "../components/product-details";
+
+const ProductImage = dynamic(() => import("../components/product-image"));
+const ProductDetails = dynamic(() => import("../components/product-details"));
+
 import { getRestaurantJuices } from "../_actions/getRestaurantJuices";
 
 interface CategoriesInterfaceProps {

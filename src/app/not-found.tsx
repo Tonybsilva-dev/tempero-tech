@@ -1,9 +1,9 @@
 'use client'
 
 import Image from "next/image";
-import { imageURL } from "../shared/modules/utils/image";
 import { Button } from "../shared/_components/ui/button";
 import { useRouter } from "next/navigation";
+import { imageURL } from "../shared/modules/utils/image";
 
 export default function Custom404() {
   const router = useRouter();
@@ -17,7 +17,7 @@ export default function Custom404() {
         width={400}
         height={400}
         sizes="100%"
-        loading="eager"
+        loading="lazy"
         src={`${imageURL}/30938565-da15-4cfa-a8b0-e8d33be3f3ed-7xmgtp.svg`}
       />
       <p className="mt-8 text-sm font-bold leading-relaxed text-zinc-500 lg:text-xl">

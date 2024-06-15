@@ -1,6 +1,8 @@
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { getRecommendedProduct } from "../_actions/getRecommendedProducts";
-import ProductItem from "../../categories/components/product-item";
+
+const ProductItem = dynamic(() => import("../../categories/components/product-item"));
 
 export const RecommendedProductsInterface = async () => {
   const recommended = await getRecommendedProduct();
