@@ -1,7 +1,6 @@
 import "../assets/styles/globals.css";
 import "leaflet/dist/leaflet.css";
 import dynamic from "next/dynamic";
-import { poppins } from "@/_src/app/_lib/fonts";
 import type { Metadata } from "next";
 import AuthProvider from "../shared/modules/providers/session";
 import { CartProvider } from "../subdomains/home/context/cart";
@@ -9,9 +8,11 @@ import Header from "../subdomains/home/components/header";
 import { Toaster } from "../shared/_components/ui/sonner";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { poppins } from "../shared/modules/utils/fonts";
 
-const ScrollToTopButton = dynamic(() => import("../shared/modules/components/scroll-to-top-button"));
-
+const ScrollToTopButton = dynamic(
+  () => import("../shared/modules/components/scroll-to-top-button"),
+);
 
 export const metadata: Metadata = {
   title: {

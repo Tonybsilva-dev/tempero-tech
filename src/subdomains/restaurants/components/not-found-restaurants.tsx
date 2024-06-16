@@ -1,4 +1,4 @@
-import { imageURL } from "@/_src/app/_helpers/images";
+import { imageURL } from "@/src/shared/modules/utils/image";
 import Image from "next/image";
 
 export default function NotFoundRestaurants() {

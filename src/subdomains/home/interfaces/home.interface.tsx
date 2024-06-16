@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/_src/app/_components/ui/button";
 import Footer from "../components/footer";
 import { ArrowRightIcon, ChevronRightIcon } from "lucide-react";
 import { imageURL } from "@/src/shared/modules/utils/image";
@@ -13,6 +12,7 @@ const PromoBanner = dynamic(() => import("../components/promo-banner"));
 
 import { getDiscountedProducts } from "../_actions/getDiscountedProducts";
 import { banners } from "../../restaurants/helpers/banners";
+import { Button } from "@/src/shared/_components/ui/button";
 
 export const HomeInterface = async () => {
   const products = await getDiscountedProducts();

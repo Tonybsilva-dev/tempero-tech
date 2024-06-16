@@ -1,6 +1,5 @@
 "use client";
 
-import { CartContext } from "@/_src/app/_contexts/cart";
 import { Button } from "@/src/shared/_components/ui/button";
 import { Separator } from "@/src/shared/_components/ui/separator";
 import {
@@ -14,6 +13,7 @@ import { formatCurrency } from "@/src/shared/modules/helpers/price";
 import { Restaurant } from "@prisma/client";
 import { useContext, useState } from "react";
 import Cart from "../../home/components/cart";
+import { CartContext } from "../../home/context/cart";
 
 interface CartBannerProps {
   restaurant: Pick<Restaurant, "id">;

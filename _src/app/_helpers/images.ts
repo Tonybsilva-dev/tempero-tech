@@ -1,1 +1,0 @@
-export const imageURL = process.env.IMAGE_URL

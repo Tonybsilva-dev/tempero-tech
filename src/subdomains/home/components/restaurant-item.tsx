@@ -8,10 +8,10 @@ import Link from "next/link";
 
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
-import { Button } from "@/_src/app/_components/ui/button";
 import { formatCurrency } from "@/src/shared/modules/helpers/price";
 import { toggleFavoriteRestaurant } from "../_actions/restaurant";
 import { cn } from "@/src/shared/modules/utils/utils";
+import { Button } from "@/src/shared/_components/ui/button";
 
 interface RestaurantItemProps {
   restaurant: Restaurant;
