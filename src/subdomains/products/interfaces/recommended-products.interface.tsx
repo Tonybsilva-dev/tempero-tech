@@ -2,7 +2,9 @@ import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { getRecommendedProduct } from "../_actions/getRecommendedProducts";
 
-const ProductItem = dynamic(() => import("../../categories/components/product-item"));
+const ProductItem = dynamic(
+  () => import("../../categories/components/product-item"),
+);
 
 export const RecommendedProductsInterface = async () => {
   const recommended = await getRecommendedProduct();
@@ -19,7 +21,7 @@ export const RecommendedProductsInterface = async () => {
       >
         <div className="container mx-auto">
           <h2 className="mb-8 flex justify-between text-3xl font-bold">
-            Ofertas do dia
+            Produtos recomendados
           </h2>
           <div className="grid grid-cols-2 justify-items-center gap-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8">
             {recommended.map((product) => (

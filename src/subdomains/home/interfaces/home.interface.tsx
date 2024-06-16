@@ -9,8 +9,10 @@ import { imageURL } from "@/src/shared/modules/utils/image";
 const ProductList = dynamic(() => import("../components/product-list"));
 const RestaurantList = dynamic(() => import("../components/restaurant-list"));
 const CategoryList = dynamic(() => import("../components/category-list"));
+const PromoBanner = dynamic(() => import("../components/promo-banner"));
 
 import { getDiscountedProducts } from "../_actions/getDiscountedProducts";
+import { banners } from "../../restaurants/helpers/banners";
 
 export const HomeInterface = async () => {
   const products = await getDiscountedProducts();
@@ -34,13 +36,15 @@ export const HomeInterface = async () => {
           </div>
         </div> */}
 
+      <PromoBanner banners={banners} />
+
       <section
         className="bg-transparent px-6 py-16 md:px-8 lg:px-10"
         id="products"
       >
         <div className="mx-auto lg:container">
           <h2 className="mb-8 flex justify-between text-3xl font-bold">
-            Ofertas do dia
+            Produtos recomendados
             <Button
               variant="ghost"
               className="h-fit p-0 text-primary hover:bg-transparent"

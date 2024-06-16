@@ -1,0 +1,1 @@
+export { MyOrdersContainer as default } from "@/src/subdomains/user/my-orders/container/my-orders.container";

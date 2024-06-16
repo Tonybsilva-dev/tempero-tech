@@ -1,0 +1,1 @@
+export { ScheduleDateOnRestaurantContainer as default } from "@/src/subdomains/restaurants/containers/schedule-date-on-restaurant.container";
