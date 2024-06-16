@@ -1,5 +1,5 @@
 import { addMinutes, format, setHours, setMinutes } from "date-fns";
-import { TimeSlot } from "../_components/time-slots";
+import type { TimeSlot } from "../components/scheduler/time-slots";
 
 export function GenerateDayTimeList(date: Date, interval?: number): TimeSlot[] {
   const effectiveInterval = interval ?? 60;
