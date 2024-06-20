@@ -21,8 +21,9 @@ const PromoBanner = ({ banners }: PromoBannerProps) => {
               <Image
                 alt={banners[0].alt}
                 src={banners[0].src}
-                fill
-                objectFit="cover"
+                width={800}
+                height={800}
+                quality={75}
                 className="absolute inset-0 block h-full w-full object-cover object-center"
               />
               <div className="relative z-10 w-full text-center">
@@ -40,8 +41,10 @@ const PromoBanner = ({ banners }: PromoBannerProps) => {
                   <Image
                     alt={banner.alt}
                     src={banner.src}
-                    layout="fill"
+                    width={400}
+                    height={400}
                     objectFit="cover"
+                    quality={75}
                     className="absolute inset-0 block h-full w-full object-cover object-center"
                   />
                   <div className="relative z-10 w-full text-center">
