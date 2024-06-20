@@ -1,18 +1,39 @@
 "use client";
 
-import { Prisma } from "@prisma/client";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
-import Image from "next/image";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/src/shared/_components/ui/avatar";
+import type { Prisma } from "@prisma/client";
+import DiscountBadge from "./discount-badge";
+import { formatCurrency } from "@/src/shared/modules/helpers/price";
+import {
+  BikeIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ClockIcon,
+} from "lucide-react";
+import { Button } from "@/src/shared/_components/ui/button";
 import { useContext, useState } from "react";
 import { CartContext } from "../../home/context/cart";
-import { calculateProductTotalPrice, formatCurrency } from "@/src/shared/modules/helpers/price";
-import DiscountBadge from "./discount-badge";
-import { Button } from "@/src/shared/_components/ui/button";
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/src/shared/_components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/src/shared/_components/ui/sheet";
 import Cart from "../../home/components/cart";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/src/shared/_components/ui/alert-dialog";
-import ProductList from "../../home/components/product-list";
-import DeliveryInfo from "./delivery-info";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/src/shared/_components/ui/alert-dialog";
 
 interface ProductDetailsProps {
   product: Prisma.ProductGetPayload<{
@@ -20,17 +41,9 @@ interface ProductDetailsProps {
       restaurant: true;
     };
   }>;
-  complementaryProducts: Prisma.ProductGetPayload<{
-    include: {
-      restaurant: true;
-    };
-  }>[];
 }
 
-const ProductDetails = ({
-  product,
-  complementaryProducts,
-}: ProductDetailsProps) => {
+const NewProductDetails = ({ product }: ProductDetailsProps) => {
   const [quantity, setQuantity] = useState(1);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
@@ -69,88 +82,75 @@ const ProductDetails = ({
     });
 
   return (
-    <>
-      <div className="relative z-50 mt-[-1.5rem] rounded-tl-3xl rounded-tr-3xl bg-white py-5">
-        {/* RESTAURANTE */}
-        <div className="flex items-center gap-[0.375rem] px-5">
-          <div className="relative h-6 w-6">
-            <Image
-              src={product.restaurant.imageUrl}
-              alt={product.restaurant.name}
-              fill
-              className="rounded-full object-cover"
-            />
-          </div>
-          <span className="text-xs text-muted-foreground">
-            {product.restaurant.name}
-          </span>
+    <div className="space-y-4">
+      <div className="flex items-center space-x-2">
+        <Avatar>
+          <AvatarImage src={product.restaurant.imageUrl} />
+          <AvatarFallback>
+            {product.restaurant.name
+              .split(" ")
+              .slice(0, 2)
+              .map((word) => word[0])
+              .join("")}
+          </AvatarFallback>
+        </Avatar>
+        <span>{product.restaurant.name}</span>
+      </div>
+      <h1 className="text-3xl font-bold">{product.name}</h1>
+      <div className="flex justify-between">
+        <div className="flex items-center space-x-2">
+          <span className="text-2xl font-semibold">R$14,25</span>
+          <DiscountBadge product={product} />
         </div>
-
-        {/* NOME DO PRODUTO */}
-        <h1 className="mb-2 mt-1 px-5 text-xl font-semibold">{product.name}</h1>
-
-        {/* PREÇO DO PRODUTO E QUANTIDADE */}
-        <div className="flex justify-between px-5">
-          {/* PREÇO COM DESCONTO */}
-          <div>
-            <div className="flex items-center gap-2">
-              <h2 className="text-xl font-semibold">
-                {formatCurrency(calculateProductTotalPrice(product))}
-              </h2>
-              {product.discountPercentage > 0 && (
-                <DiscountBadge product={product} />
-              )}
-            </div>
-
-            {/* PREÇO ORIGINAL */}
-            {product.discountPercentage > 0 && (
-              <p className="text-sm text-muted-foreground">
-                De: {formatCurrency(Number(product.price))}
-              </p>
-            )}
-          </div>
-
-          {/* QUANTIDADE */}
-          <div className="flex items-center gap-3 text-center">
-            <Button
-              size="icon"
-              variant="ghost"
-              className="border border-solid border-muted-foreground"
-              onClick={handleDecreaseQuantityClick}
-            >
-              <ChevronLeftIcon />
-            </Button>
-            <span className="w-4">{quantity}</span>
-            <Button size="icon" onClick={handleIncreaseQuantityClick}>
-              <ChevronRightIcon />
-            </Button>
-          </div>
-        </div>
-
-        <div className="px-5">
-          <DeliveryInfo restaurant={product.restaurant} />
-        </div>
-
-        <div className="mt-6 space-y-3 px-5">
-          <h3 className="font-semibold">Sobre</h3>
-          <p className="text-sm text-muted-foreground">{product.description}</p>
-        </div>
-
-        <div className="mt-6 space-y-3">
-          <h3 className="px-5 font-semibold">Sucos</h3>
-          <ProductList products={complementaryProducts} />
-        </div>
-
-        <div className="mt-6 px-5">
+        <div className="flex items-center gap-3 text-center">
           <Button
-            className="w-full font-semibold"
-            onClick={handleAddToCartClick}
+            size="icon"
+            variant="ghost"
+            className="border border-solid border-muted-foreground"
+            onClick={handleDecreaseQuantityClick}
           >
-            Adicionar à sacola
+            <ChevronLeftIcon />
+          </Button>
+          <span className="w-4">{quantity}</span>
+          <Button size="icon" onClick={handleIncreaseQuantityClick}>
+            <ChevronRightIcon />
           </Button>
         </div>
       </div>
-
+      <div className="text-gray-500">
+        De: {formatCurrency(Number(product.price))}
+      </div>
+      <div className="flex items-center justify-between border-b border-t py-4">
+        <div className="flex items-center space-x-2">
+          <BikeIcon className="h-5 w-5" />
+          <span>Entrega</span>
+          <span className="font-semibold">
+            {Number(product.restaurant.deliveryFee) > 0 ? (
+              <p className="font-semibold">
+                {formatCurrency(Number(product.restaurant.deliveryFee))}
+              </p>
+            ) : (
+              <p className="font-semibold">Grátis</p>
+            )}
+          </span>
+        </div>
+        <div className="flex items-center space-x-2">
+          <ClockIcon className="h-5 w-5" />
+          <span>Entrega</span>
+          <span className="font-semibold">
+            {product.restaurant.deliveryTimeMinutes} min
+          </span>
+        </div>
+      </div>
+      <div>
+        <h2 className="text-xl font-semibold">Sobre</h2>
+        <p>{product.description}</p>
+      </div>
+      <div className="mt-6">
+        <Button className="w-full font-semibold" onClick={handleAddToCartClick}>
+          Adicionar à sacola
+        </Button>
+      </div>
       <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
         <SheetContent className="w-[90vw]">
           <SheetHeader>
@@ -182,8 +182,8 @@ const ProductDetails = ({
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </>
+    </div>
   );
 };
 
-export default ProductDetails;
+export default NewProductDetails;
