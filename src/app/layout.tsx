@@ -40,7 +40,7 @@ export default function RootLayout({
           <CartProvider>
             <div className="space-y-8">
               <Header />
-              <div className="pt-6">
+              <div className="pt-7">
                 {children}
                 <ScrollToTopButton />
               </div>

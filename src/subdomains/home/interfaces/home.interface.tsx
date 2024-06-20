@@ -18,41 +18,30 @@ export const HomeInterface = async () => {
   const products = await getDiscountedProducts();
 
   return (
-    <>
+    <main>
       <div className="space-y-4 pt-16">
         <CategoryList />
       </div>
-      {/* <div className=" lg:w-lg mx-auto max-w-4xl">
-          <div className="flex flex-col items-center justify-center space-x-0 space-y-4 px-5 pt-6 md:flex-row md:space-x-4 md:space-y-0">
-            <PromoBanner
-              src="/promo-banner-01.png"
-              alt="Até 30% de desconto em pizzas!"
-            />
-
-            <PromoBanner
-              src="/promo-banner-02.png"
-              alt="A partir de R$17,90 em lanches"
-            />
-          </div>
-        </div> */}
-
       <PromoBanner banners={banners} />
-
       <section
         className="bg-transparent px-6 py-16 md:px-8 lg:px-10"
         id="products"
       >
         <div className="mx-auto lg:container">
-          <h2 className="mb-8 flex justify-between text-3xl font-bold">
-            Produtos recomendados
+          <header className="mb-8 flex items-center justify-between">
+            <h2 className="text-3xl font-bold">Produtos recomendados</h2>
             <Button
               variant="ghost"
-              className="h-fit p-0 text-primary hover:bg-transparent"
+              className="h-fit p-0 text-yellow-600 hover:bg-transparent"
             >
-              <Link href="/products/recommended">Ver todos</Link>
-              <ChevronRightIcon size={16} />
+              <Link
+                className="center flex space-y-1"
+                href="/products/recommended"
+              >
+                Ver todos <ChevronRightIcon size={16} />
+              </Link>
             </Button>
-          </h2>
+          </header>
           <ProductList products={products} />
         </div>
       </section>
@@ -61,7 +50,7 @@ export const HomeInterface = async () => {
         <div className="mx-auto grid grid-cols-1 gap-8 lg:container md:grid-cols-2">
           <div className="flex flex-col justify-center">
             <h1 className="mb-4 text-4xl font-bold">
-              Descubra os melhores estabelecimentos na cidade{" "}
+              Descubra os melhores estabelecimentos na cidade
             </h1>
             <p className="mb-8 text-gray-600">
               Explore uma grande variedade de cozinhas deliciosas e encontre a
@@ -72,8 +61,7 @@ export const HomeInterface = async () => {
                 className="flex w-full justify-between text-lg font-semibold"
                 href="/restaurants/recommended"
               >
-                Ver todos
-                <ArrowRightIcon className="h-6 w-6" />
+                Ver todos <ArrowRightIcon className="h-6 w-6" />
               </Link>
             </Button>
           </div>
@@ -84,7 +72,7 @@ export const HomeInterface = async () => {
               sizes="100%"
               quality={75}
               loading="eager"
-              alt="Hero Image"
+              alt="Imagem de destaque"
               className="aspect-video rounded-lg shadow-lg"
               src={`${imageURL}/bb822675-15e6-40f6-a8ca-4db0f1b36e39-1m48ut.png`}
             />
@@ -97,20 +85,24 @@ export const HomeInterface = async () => {
         id="restaurants"
       >
         <div className="mx-auto lg:container">
-          <h2 className="mb-8 flex justify-between text-3xl font-bold">
-            Restaurantes recomendados
+          <header className="mb-8 flex items-center justify-between">
+            <h2 className="text-3xl font-bold">Restaurantes recomendados</h2>
             <Button
               variant="ghost"
-              className="h-fit p-0 text-primary hover:bg-transparent"
+              className="h-fit p-0 text-yellow-600 hover:bg-transparent"
             >
-              <Link href="/restaurants/recommended">Ver todos</Link>
-              <ChevronRightIcon size={16} />
+              <Link
+                className="flex items-center space-y-1"
+                href="/restaurants/recommended"
+              >
+                Ver todos <ChevronRightIcon size={16} />
+              </Link>
             </Button>
-          </h2>
+          </header>
           <RestaurantList />
         </div>
       </section>
       <Footer />
-    </>
+    </main>
   );
 };
