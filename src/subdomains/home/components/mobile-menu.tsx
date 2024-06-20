@@ -7,14 +7,23 @@ import {
   Map,
   Menu,
   ScrollText,
+  User,
 } from "lucide-react";
 
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Sheet, SheetContent, SheetTrigger } from "@/src/shared/_components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/src/shared/_components/ui/sheet";
 import { Button } from "@/src/shared/_components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/src/shared/_components/ui/avatar";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/src/shared/_components/ui/avatar";
 import { Separator } from "@/src/shared/_components/ui/separator";
 
 const MobileMenu = ({ data }: any) => {
@@ -96,6 +105,15 @@ const MobileMenu = ({ data }: any) => {
 
             {data?.user && (
               <>
+                <Link href="/my-account">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start space-x-3 rounded-md text-sm font-normal hover:bg-zinc-100"
+                  >
+                    <User size={16} />
+                    <span className="block">Minha conta</span>
+                  </Button>
+                </Link>
                 <Link href="/my-orders">
                   <Button
                     variant="ghost"
