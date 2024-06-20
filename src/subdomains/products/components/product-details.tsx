@@ -7,7 +7,10 @@ import {
 } from "@/src/shared/_components/ui/avatar";
 import type { Prisma } from "@prisma/client";
 import DiscountBadge from "./discount-badge";
-import { formatCurrency } from "@/src/shared/modules/helpers/price";
+import {
+  calculateProductTotalPrice,
+  formatCurrency,
+} from "@/src/shared/modules/helpers/price";
 import {
   BikeIcon,
   ChevronLeftIcon,
@@ -99,7 +102,9 @@ const NewProductDetails = ({ product }: ProductDetailsProps) => {
       <h1 className="text-3xl font-bold">{product.name}</h1>
       <div className="flex justify-between">
         <div className="flex items-center space-x-2">
-          <span className="text-2xl font-semibold">R$14,25</span>
+          <span className="text-2xl font-semibold">
+            {formatCurrency(calculateProductTotalPrice(product))}
+          </span>
           <DiscountBadge product={product} />
         </div>
         <div className="flex items-center gap-3 text-center">
