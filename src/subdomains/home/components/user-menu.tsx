@@ -20,7 +20,7 @@ const UserMenu = ({ status, data }: any) => {
 
   const GoToSignInPage = () => router.push("/signIn");
   const avatarImage = data?.user?.image ?? "/user.svg";
-  
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -48,11 +48,12 @@ const UserMenu = ({ status, data }: any) => {
         <DropdownMenuSeparator />
         {status === "authenticated" ? (
           <>
-            <DropdownMenuItem>
-              <User className="mr-2 h-4 w-4" />
-              Perfil
-            </DropdownMenuItem>
-
+            <Link href="/my-account">
+              <DropdownMenuItem>
+                <User className="mr-2 h-4 w-4" />
+                Minha conta
+              </DropdownMenuItem>
+            </Link>
             <Link href="/my-orders">
               <DropdownMenuItem>
                 <ScrollText className="mr-2 h-4 w-4" />
