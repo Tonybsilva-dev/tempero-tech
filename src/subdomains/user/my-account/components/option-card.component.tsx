@@ -16,24 +16,25 @@ const CardOptionsComponent: FC<CardProps> = ({
   linkText,
   linkHref,
 }) => (
-  <div className="flex h-full flex-col overflow-hidden rounded-lg bg-background shadow-lg">
-    <div className="flex-1 p-6">
+  <article className="flex h-full flex-col overflow-hidden rounded-lg bg-background shadow-lg">
+    <header className="flex-1 p-6">
       <div className="mb-4 flex items-center">
         <Icon className="mr-4 h-8 w-8 text-primary" />
         <h2 className="text-xl font-bold">{title}</h2>
       </div>
       <p className="text-muted-foreground">{description}</p>
-    </div>
-    <div>
+    </header>
+    <footer>
       <Link
         href={linkHref}
         className="block bg-muted px-6 py-3 text-center font-medium hover:bg-accent hover:text-accent-foreground"
         prefetch={false}
+        aria-label={`Link para ${title}`}
       >
         {linkText}
       </Link>
-    </div>
-  </div>
+    </footer>
+  </article>
 );
 
 export default CardOptionsComponent;

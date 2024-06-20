@@ -24,29 +24,34 @@ export const MyFavoriteRestaurantsInterface = async () => {
   });
 
   return (
-    <>
-      <section
-        className="bg-transparent px-6 py-16 md:px-8 lg:px-10"
-        id="products"
-      >
-        <div className="container mx-auto">
-          <h2 className="mb-8 flex justify-between text-3xl font-bold">
-            Restaurantes favoritos
-          </h2>
-          <div className="grid grid-cols-2 justify-items-center gap-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8">
-            {userFavoriteRestaurants.length > 0 &&
-              userFavoriteRestaurants.map(({ restaurant }) => (
-                <RestaurantItem
-                  key={restaurant.id}
-                  restaurant={restaurant}
-                  className="min-w-full max-w-full"
-                  userFavoriteRestaurants={userFavoriteRestaurants}
-                />
-              ))}
-          </div>
-          {userFavoriteRestaurants.length === 0 && <NotFoundRestaurants />}
-        </div>
-      </section>
-    </>
+    <main
+      className="bg-transparent px-6 py-16 md:px-8 lg:px-10"
+      id="favorite-restaurants"
+      aria-labelledby="favorite-restaurants-heading"
+    >
+      <div className="container mx-auto">
+        <header>
+          <h1 className="mb-1 text-3xl font-bold">Restaurantes favoritos</h1>
+          <p className="mb-8 text-lg">
+            Os seus restaurantes favoritos estão aqui.
+          </p>
+        </header>
+        <hr className="mb-6 h-[1px] w-full bg-zinc-200" />
+        {userFavoriteRestaurants.length > 0 ? (
+          <section className="grid grid-cols-2 justify-items-center gap-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8">
+            {userFavoriteRestaurants.map(({ restaurant }) => (
+              <RestaurantItem
+                key={restaurant.id}
+                restaurant={restaurant}
+                className="min-w-full max-w-full"
+                userFavoriteRestaurants={userFavoriteRestaurants}
+              />
+            ))}
+          </section>
+        ) : (
+          <NotFoundRestaurants />
+        )}
+      </div>
+    </main>
   );
 };

@@ -1,3 +1,6 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import {
   Heart,
@@ -9,7 +12,6 @@ import {
   ScrollText,
   User,
 } from "lucide-react";
-
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -26,9 +28,10 @@ import {
 } from "@/src/shared/_components/ui/avatar";
 import { Separator } from "@/src/shared/_components/ui/separator";
 
+const Search = dynamic(() => import("./search"));
+
 const MobileMenu = ({ data }: any) => {
   const router = useRouter();
-
   const [isOpen, setIsOpen] = useState(false);
   const avatarImage = data?.user?.image ?? "/user.svg";
 
@@ -39,7 +42,7 @@ const MobileMenu = ({ data }: any) => {
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
           <Button
-            aria-label="Close Menu"
+            aria-label="Open Menu"
             variant="ghost"
             onClick={() => setIsOpen(true)}
           >
@@ -48,43 +51,41 @@ const MobileMenu = ({ data }: any) => {
         </SheetTrigger>
         <SheetContent>
           {data?.user ? (
-            <>
-              <div className="flex justify-between pt-6">
-                <div className="flex items-center gap-3">
-                  <Avatar>
-                    <AvatarImage src={avatarImage} />
-                    <AvatarFallback>
-                      {data?.user?.name?.split(" ")[0][0]}
-                      {data?.user?.name?.split(" ")[1][0]}
-                    </AvatarFallback>
-                  </Avatar>
-
-                  <div>
-                    <h3 className="font-semibold">{data?.user?.name}</h3>
-                    <span className="block text-xs text-muted-foreground">
-                      {data?.user?.email}
-                    </span>
-                  </div>
+            <div className="flex justify-between pt-6">
+              <div className="flex items-center gap-3">
+                <Avatar>
+                  <AvatarImage src={avatarImage} alt={data?.user?.name} />
+                  <AvatarFallback>
+                    {data?.user?.name?.split(" ")[0][0]}
+                    {data?.user?.name?.split(" ")[1][0]}
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <h3 className="font-semibold">{data?.user?.name}</h3>
+                  <span className="block text-xs text-muted-foreground">
+                    {data?.user?.email}
+                  </span>
                 </div>
               </div>
-            </>
+            </div>
           ) : (
-            <>
-              <div className="flex items-center justify-between pt-10">
-                <h2 className="font-semibold">Olá. Faça seu login!</h2>
-                <Button size="icon" onClick={handleGoToSignInPage}>
-                  <LogIn />
-                </Button>
-              </div>
-            </>
+            <div className="flex items-center justify-between pt-10">
+              <h2 className="font-semibold">Olá. Faça seu login!</h2>
+              <Button size="icon" onClick={handleGoToSignInPage}>
+                <LogIn />
+              </Button>
+            </div>
           )}
 
           <div className="py-6">
             <Separator />
           </div>
 
-          <div className="space-y-2">
-            <Link href={"/"}>
+          <nav className="space-y-2">
+            <div className="mb-2">
+              <Search />
+            </div>
+            <Link href="/">
               <Button
                 variant="ghost"
                 className="w-full justify-start space-x-3 rounded-md text-sm font-normal hover:bg-zinc-100"
@@ -123,10 +124,7 @@ const MobileMenu = ({ data }: any) => {
                     <span className="block">Meus Pedidos</span>
                   </Button>
                 </Link>
-                <Link
-                  href="/my-favorite-restaurants"
-                  className="flex space-y-2"
-                >
+                <Link href="/my-favorite-restaurants">
                   <Button
                     variant="ghost"
                     className="w-full justify-start space-x-3 rounded-md text-sm font-normal hover:bg-zinc-100"
@@ -137,7 +135,7 @@ const MobileMenu = ({ data }: any) => {
                 </Link>
               </>
             )}
-          </div>
+          </nav>
 
           <div className="py-6">
             <Separator />
