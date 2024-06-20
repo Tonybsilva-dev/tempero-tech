@@ -1,7 +1,16 @@
 import { CreditCardIcon, KeyIcon, PhoneIcon, UserIcon } from "lucide-react";
-import type { CardProps } from "../components/option-card.component";
+import type { FC } from "react";
 
-export const cardsOptionsList: CardProps[] = [
+interface LinkListItemProps {
+  icon: FC<{ className?: string }>;
+  title: string;
+  description: string;
+  linkText: string;
+  linkHref: string;
+  image?: string;
+}
+
+export const cardsOptionsList: LinkListItemProps[] = [
   {
     icon: KeyIcon,
     title: "Credenciais",
@@ -28,7 +37,7 @@ export const cardsOptionsList: CardProps[] = [
     icon: CreditCardIcon,
     title: "Preferências de Pagamento",
     description: "Personalize as preferências e o estilo da sua conta.",
-    linkText: "Gerenciar Preferências",
+    linkText: "Gerenciar Preferências de Pagamento",
     linkHref: "#",
   },
 ];

@@ -1,4 +1,5 @@
-import CardOptionsComponent from "../components/option-card.component";
+// import CardOptionsComponent from "../components/option-card.component";
+import LinkListItem from "../components/option-list.component";
 import { cardsOptionsList } from "../helpers/account-options.helper";
 
 export const MyAccountInterface = () => {
@@ -13,9 +14,15 @@ export const MyAccountInterface = () => {
         <h2 id="account-options" className="sr-only">
           Opções da Conta
         </h2>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {cardsOptionsList.map((card, index) => (
-            <CardOptionsComponent key={index} {...card} />
+        <div className="flex-1 space-y-4">
+          {cardsOptionsList.map((item, index) => (
+            <LinkListItem
+              key={index}
+              title={item.title}
+              description={item.description}
+              linkText={item.linkText}
+              linkHref={item.linkHref}
+            />
           ))}
         </div>
       </section>

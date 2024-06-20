@@ -3,12 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "../components/footer";
 import { ArrowRightIcon, ChevronRightIcon } from "lucide-react";
-import { imageURL } from "@/src/shared/modules/utils/image";
 
 const ProductList = dynamic(() => import("../components/product-list"));
 const RestaurantList = dynamic(() => import("../components/restaurant-list"));
 const CategoryList = dynamic(() => import("../components/category-list"));
-const PromoBanner = dynamic(() => import("../components/promo-banner"));
+const PromoBanner = dynamic(() => import("../components/promo-banner"), {
+  ssr: false,
+});
 
 import { getDiscountedProducts } from "../_actions/getDiscountedProducts";
 import { banners } from "../../restaurants/helpers/banners";
@@ -67,14 +68,14 @@ export const HomeInterface = async () => {
           </div>
           <div>
             <Image
+              priority
               width={600}
               height={600}
               sizes="100%"
               quality={75}
-              loading="eager"
               alt="Imagem de destaque"
               className="aspect-video rounded-lg shadow-lg"
-              src={`${imageURL}/bb822675-15e6-40f6-a8ca-4db0f1b36e39-1m48ut.png`}
+              src={`/foods-location.webp`}
             />
           </div>
         </div>
