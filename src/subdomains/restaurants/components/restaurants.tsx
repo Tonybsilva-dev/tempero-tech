@@ -6,7 +6,9 @@ import { notFound, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { searchForRestaurants } from "../_actions/search";
 
-const RestaurantItem = dynamic(() => import("../../home/components/restaurant-item"));
+const RestaurantItem = dynamic(
+  () => import("../../home/components/restaurant-item"),
+);
 const NotFoundRestaurants = dynamic(() => import("./not-found-restaurants"));
 
 interface RestaurantProps {
@@ -21,17 +23,13 @@ const Restaurants = ({ userFavoriteRestaurants }: RestaurantProps) => {
 
   useEffect(() => {
     const fetchRestaurants = async () => {
-      if (!searchFor) return;
+      if (!searchFor) notFound();
       const foundRestaurants = await searchForRestaurants(searchFor);
       setRestaurants(foundRestaurants);
     };
 
     fetchRestaurants();
   }, [searchFor]);
-
-  if (!searchFor) {
-    return notFound();
-  }
 
   return (
     <>
