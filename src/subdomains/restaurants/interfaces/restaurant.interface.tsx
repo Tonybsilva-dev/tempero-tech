@@ -27,10 +27,6 @@ export const RestaurantInterface = async ({
 }: RestaurantInterfaceProps) => {
   const session = await getServerSession(authOptions);
 
-  if (!session) {
-    return notFound();
-  }
-
   const restaurant = await getRestaurantById({
     restaurantId: params.id,
   });
