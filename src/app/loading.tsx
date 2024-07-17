@@ -1,59 +1,86 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, useAnimate } from "framer-motion";
 
-export default function Loading() {
-  const estimatedLoadingTime = 3000;
-  const [progress, setProgress] = useState(0);
+// ----------------------------------------------------------------------
+
+export default function SplashScreen() {
+  const [mounted, setMounted] = useState(false);
+
+  const text = "THANK YOU! HAVE A NICE DAY.";
+  const characters = text.split("");
+
+  const radius = 80;
+  const fontSize = "18px";
+  const letterSpacing = 12.5;
+
+  const [scopeElement, animate] = useAnimate();
 
   useEffect(() => {
-    const startTime = Date.now();
-    const interval = setInterval(() => {
-      const elapsedTime = Date.now() - startTime;
-      const percentage = Math.min(
-        (elapsedTime / estimatedLoadingTime) * 100,
-        100,
+    const animateLoader = async () => {
+      const letterAnimation = [] as any;
+      characters.forEach((_, i) => {
+        letterAnimation.push([
+          `.letter-${i}`,
+          { opacity: 0 },
+          { duration: 0.3, at: i === 0 ? "+0.8" : "-0.28" },
+        ]);
+      });
+      characters.forEach((_, i) => {
+        letterAnimation.push([
+          `.letter-${i}`,
+          { opacity: 1 },
+          { duration: 0.3, at: i === 0 ? "+0.8" : "-0.28" },
+        ]);
+      });
+      animate(letterAnimation, {
+        ease: "linear",
+        repeat: Infinity,
+      });
+      animate(
+        scopeElement.current,
+        { rotate: 360 },
+        { duration: 4, ease: "linear", repeat: Infinity },
       );
-      setProgress(percentage);
-      if (percentage >= 100) {
-        clearInterval(interval);
-      }
-    }, 200);
+    };
+    if (scopeElement.current) {
+      animateLoader();
+    }
+  }, [animate, characters, scopeElement]);
 
-    return () => clearInterval(interval);
-  }, [estimatedLoadingTime]);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
-    <div className="flex h-screen w-screen items-center justify-center self-center">
-      <div className="relative h-20 w-20">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="h-14 w-14">
-            <svg
-              className="h-full w-full animate-spin text-yellow-600"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
+    <div className="flex h-screen w-screen items-center justify-center">
+      <motion.div
+        ref={scopeElement}
+        className="circle relative aspect-square"
+        style={{ width: radius * 2 }}
+      >
+        <p aria-label={text} />
+        <p aria-hidden="true" className="text">
+          {characters.map((ch, i) => (
+            <motion.span
+              key={i}
+              className={`letter font-bold letter-${i} absolute left-1/2 top-0 font-sans text-yellow-600`}
+              style={{
+                transformOrigin: `0 ${radius}px`,
+                transform: `rotate(${i * letterSpacing}deg)`,
+                fontSize,
+              }}
             >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-              ></path>
-            </svg>
-            <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-black">
-              {Number(progress).toFixed(0)}%
-            </div>
-          </div>
-        </div>
-      </div>
+              {ch}
+            </motion.span>
+          ))}
+        </p>
+      </motion.div>
     </div>
   );
 }
